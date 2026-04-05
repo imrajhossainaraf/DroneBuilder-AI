@@ -1,4 +1,16 @@
-const API_BASE_URL = window.location.origin + "/api";
+// Use backend URL when page is opened via file:// or opaque origin (must run server at :8000)
+function getApiBaseUrl() {
+    try {
+        const p = window.location.protocol;
+        if (p === "file:" || p === "null:" || !window.location.hostname) {
+            return "http://127.0.0.1:8000/api";
+        }
+        return window.location.origin + "/api";
+    } catch {
+        return "http://127.0.0.1:8000/api";
+    }
+}
+const API_BASE_URL = getApiBaseUrl();
 
 async function api_get(endpoint) {
     try {

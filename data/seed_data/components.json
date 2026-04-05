@@ -1,74 +1,34 @@
 [
-  {
-    "component_type": "motor",
-    "name": "EMAX RS2207 2600KV",
-    "brand": "EMAX",
-    "specs": {"kv": 2600, "size": "2207", "weight": "31g", "voltage": "4-6S", "max_current": "40A"},
-    "price_range": "15-20",
-    "compatible_with": {"esc": ["30A", "35A", "40A"], "battery": ["4S", "5S", "6S"], "frame": ["5-inch", "6-inch"]},
-    "use_cases": ["racing", "freestyle"],
-    "pros": ["High quality", "Durable", "Smooth power"],
-    "cons": ["Slightly expensive"],
-    "rating": 4.5
-  },
-  {
-    "component_type": "motor",
-    "name": "iFlight XING 2207 1800KV",
-    "brand": "iFlight",
-    "specs": {"kv": 1800, "size": "2207", "weight": "34g", "voltage": "4-6S", "max_current": "42A"},
-    "price_range": "18-25",
-    "compatible_with": {"esc": ["35A", "40A", "45A"], "battery": ["5S", "6S"], "frame": ["5-inch", "6-inch"]},
-    "use_cases": ["freestyle", "long range"],
-    "pros": ["Smooth on 6S", "Well balanced", "Good customer support"],
-    "cons": ["Heavier than some competitors"],
-    "rating": 4.6
-  },
-  {
-    "component_type": "flight_controller",
-    "name": "SpeedyBee F405 V3",
-    "brand": "SpeedyBee",
-    "specs": {"processor": "STM32F405", "gyro": "MPU6000", "uarts": 6, "blackbox": "8MB Flash", "barometer": true},
-    "price_range": "35-45",
-    "compatible_with": {"stack": ["30x30mm", "20x20mm"]},
-    "use_cases": ["racing", "freestyle", "long range"],
-    "pros": ["Bluetooth config", "Affordable", "Great software support"],
-    "cons": ["F4 chip — not as fast as F7 for complex builds"],
-    "rating": 4.7
-  },
-  {
-    "component_type": "esc",
-    "name": "Holybro Kotleta20",
-    "brand": "Holybro",
-    "specs": {"continuous_current": "20A", "burst_current": "30A", "protocol": "DSHOT300/600", "telemetry": true},
-    "price_range": "18-25",
-    "compatible_with": {"battery": ["3S", "4S"], "motor_size": ["2204", "2205", "2306"]},
-    "use_cases": ["racing", "freestyle"],
-    "pros": ["Telemetry built in", "Reliable", "Bidirectional DSHOT"],
-    "cons": ["Only 20A — not suitable for high-power 6S builds"],
-    "rating": 4.3
-  },
-  {
-    "component_type": "battery",
-    "name": "CNHL 1500mAh 4S 100C",
-    "brand": "CNHL",
-    "specs": {"capacity": "1500mAh", "cells": "4S", "voltage": "14.8V", "c_rating": "100C", "weight": "170g", "connector": "XT60"},
-    "price_range": "20-28",
-    "compatible_with": {"frame": ["4-inch", "5-inch"], "motor_kv": ["2000-2600KV"]},
-    "use_cases": ["racing", "freestyle"],
-    "pros": ["Great price-to-performance", "Consistent quality", "High C rating"],
-    "cons": ["Slight puffing after ~100 cycles"],
-    "rating": 4.4
-  },
-  {
-    "component_type": "frame",
-    "name": "TBS Source One V5 5-inch",
-    "brand": "TBS",
-    "specs": {"size": "5-inch", "arm_thickness": "4mm", "weight": "90g", "material": "Carbon Fiber", "stack": "30x30mm"},
-    "price_range": "35-55",
-    "compatible_with": {"motor": ["2207", "2306"], "stack": ["30x30mm", "20x20mm"]},
-    "use_cases": ["freestyle", "long range"],
-    "pros": ["Open source design", "Replaceable arms", "Wide community support"],
-    "cons": ["Not the most aerodynamic for pure racing"],
-    "rating": 4.6
-  }
+  {"component_type":"motor","name":"EMAX RS2207 2600KV","brand":"EMAX","specs":{"kv":2600,"size":"2207","weight":"31g","voltage":"4-6S","max_current":"40A"},"price_range":"15-20","compatible_with":{"esc":["30A","35A","40A"],"battery":["4S","5S","6S"],"frame":["5-inch"]},"use_cases":["racing","freestyle"],"pros":["High quality","Durable","Smooth power delivery"],"cons":["Slightly expensive"],"rating":4.5},
+  {"component_type":"motor","name":"iFlight XING 2207 1800KV","brand":"iFlight","specs":{"kv":1800,"size":"2207","weight":"34g","voltage":"4-6S","max_current":"42A"},"price_range":"18-25","compatible_with":{"esc":["35A","40A","45A"],"battery":["5S","6S"],"frame":["5-inch"]},"use_cases":["freestyle","long_range"],"pros":["Smooth on 6S","Well balanced","Durable"],"cons":["Heavier than some competitors"],"rating":4.6},
+  {"component_type":"motor","name":"T-Motor F60 Pro V 1750KV","brand":"T-Motor","specs":{"kv":1750,"size":"2207","weight":"33g","voltage":"6S","max_current":"44A"},"price_range":"22-30","compatible_with":{"esc":["40A","45A","50A"],"battery":["6S"],"frame":["5-inch"]},"use_cases":["racing","freestyle"],"pros":["Premium build quality","Excellent efficiency","Pro-level performance"],"cons":["Expensive"],"rating":4.8},
+  {"component_type":"motor","name":"EMAX Eco II 2207 2400KV","brand":"EMAX","specs":{"kv":2400,"size":"2207","weight":"29g","voltage":"4-5S","max_current":"36A"},"price_range":"8-12","compatible_with":{"esc":["30A","35A"],"battery":["4S"],"frame":["5-inch"]},"use_cases":["racing","freestyle"],"pros":["Great budget option","Lightweight","Reliable"],"cons":["Not as smooth as premium options"],"rating":4.2},
+  {"component_type":"motor","name":"BrotherHobby Tornado T2 2207 1900KV","brand":"BrotherHobby","specs":{"kv":1900,"size":"2207","weight":"32g","voltage":"5-6S","max_current":"42A"},"price_range":"15-20","compatible_with":{"esc":["35A","40A","45A"],"battery":["5S","6S"],"frame":["5-inch"]},"use_cases":["freestyle"],"pros":["Great torque","Quiet operation","Value pricing"],"cons":["Bearings can be inconsistent"],"rating":4.4},
+  {"component_type":"motor","name":"iFlight XING-E Pro 2207 2750KV","brand":"iFlight","specs":{"kv":2750,"size":"2207","weight":"30g","voltage":"4S","max_current":"38A"},"price_range":"10-14","compatible_with":{"esc":["30A","35A"],"battery":["4S"],"frame":["5-inch"]},"use_cases":["racing"],"pros":["Budget friendly","High KV for 4S racing","Fast"],"cons":["4S only","Hot on heavy props"],"rating":4.1},
+  {"component_type":"motor","name":"EMAX RS2306 2750KV","brand":"EMAX","specs":{"kv":2750,"size":"2306","weight":"35g","voltage":"4S","max_current":"45A"},"price_range":"16-22","compatible_with":{"esc":["35A","40A","45A"],"battery":["4S"],"frame":["5-inch","6-inch"]},"use_cases":["racing","freestyle"],"pros":["Wide stator high torque","Great for 4S","Aggressive power"],"cons":["Only for 4S"],"rating":4.5},
+
+  {"component_type":"flight_controller","name":"SpeedyBee F405 V3","brand":"SpeedyBee","specs":{"processor":"STM32F405","gyro":"MPU6000","uarts":6,"blackbox":"8MB Flash","barometer":true},"price_range":"25-35","compatible_with":{"stack":["30x30mm","20x20mm"]},"use_cases":["racing","freestyle","long_range"],"pros":["Bluetooth config","Affordable","WiFi OTA updates"],"cons":["F4 — less headroom than F7"],"rating":4.7},
+  {"component_type":"flight_controller","name":"Matek F722-SE","brand":"Matek","specs":{"processor":"STM32F722","gyro":"MPU6000","uarts":7,"blackbox":"32MB Flash","barometer":true},"price_range":"35-45","compatible_with":{"stack":["30x30mm"]},"use_cases":["freestyle","long_range"],"pros":["F7 processor","Many UARTs","Dual gyro pads"],"cons":["No built-in Bluetooth"],"rating":4.6},
+  {"component_type":"flight_controller","name":"Holybro Kakute F7 V1.5","brand":"Holybro","specs":{"processor":"STM32F745","gyro":"ICM42688","uarts":7,"blackbox":"16MB Flash","barometer":true},"price_range":"40-55","compatible_with":{"stack":["30x30mm"]},"use_cases":["racing","freestyle","long_range"],"pros":["Latest gyro sensor","Reliable","Good documentation"],"cons":["Premium priced"],"rating":4.7},
+
+  {"component_type":"esc","name":"SpeedyBee BLS 55A 4-in-1","brand":"SpeedyBee","specs":{"continuous_current":"55A","burst_current":"65A","protocol":"DSHOT600","firmware":"BLHeli_32","telemetry":true},"price_range":"35-45","compatible_with":{"battery":["4S","5S","6S"],"motor_size":["2207","2306","2806"]},"use_cases":["freestyle","long_range"],"pros":["High current","Built-in current sensor","Reliable"],"cons":["Heavy for racing"],"rating":4.6},
+  {"component_type":"esc","name":"Holybro Tekko32 F4 50A 4-in-1","brand":"Holybro","specs":{"continuous_current":"50A","burst_current":"65A","protocol":"DSHOT600","firmware":"BLHeli_32","telemetry":true},"price_range":"40-50","compatible_with":{"battery":["4S","5S","6S"],"motor_size":["2207","2306"]},"use_cases":["racing","freestyle"],"pros":["F4 MCU on each ESC","Premium quality","Excellent cooling"],"cons":["Expensive","Overkill for beginners"],"rating":4.7},
+  {"component_type":"esc","name":"JHEMCU 35A 4-in-1","brand":"JHEMCU","specs":{"continuous_current":"35A","burst_current":"45A","protocol":"DSHOT600","firmware":"BLHeli_S","telemetry":false},"price_range":"15-22","compatible_with":{"battery":["3S","4S"],"motor_size":["2204","2207"]},"use_cases":["racing","freestyle"],"pros":["Very affordable","Compact","Light"],"cons":["BLHeli_S only — no bidir DSHOT","35A limit"],"rating":4.0},
+
+  {"component_type":"battery","name":"CNHL 1500mAh 4S 100C","brand":"CNHL","specs":{"capacity":"1500mAh","cells":"4S","voltage":"14.8V","c_rating":"100C","weight":"170g","connector":"XT60"},"price_range":"20-28","compatible_with":{"frame":["4-inch","5-inch"],"motor_kv":["2000-2600KV"]},"use_cases":["racing","freestyle"],"pros":["Great value","Consistent quality","High C"],"cons":["Puffs after ~100 cycles"],"rating":4.4},
+  {"component_type":"battery","name":"GNB 1300mAh 6S 120C","brand":"GNB","specs":{"capacity":"1300mAh","cells":"6S","voltage":"22.2V","c_rating":"120C","weight":"195g","connector":"XT60"},"price_range":"28-35","compatible_with":{"frame":["5-inch"],"motor_kv":["1700-1900KV"]},"use_cases":["racing","freestyle"],"pros":["High discharge","Light for 6S","Punchy power"],"cons":["Shorter lifespan at high C"],"rating":4.5},
+  {"component_type":"battery","name":"Tattu R-Line V4 1550mAh 6S 130C","brand":"Tattu","specs":{"capacity":"1550mAh","cells":"6S","voltage":"22.2V","c_rating":"130C","weight":"210g","connector":"XT60"},"price_range":"35-42","compatible_with":{"frame":["5-inch"],"motor_kv":["1700-1900KV"]},"use_cases":["racing","freestyle"],"pros":["Premium performance","Minimal voltage sag","Long lifespan"],"cons":["Expensive","Heavier"],"rating":4.7},
+
+  {"component_type":"frame","name":"TBS Source One V5","brand":"TBS","specs":{"size":"5-inch","arm_thickness":"4mm","weight":"90g","material":"Carbon Fiber","stack":"30x30mm"},"price_range":"35-55","compatible_with":{"motor":["2207","2306"],"stack":["30x30mm","20x20mm"]},"use_cases":["freestyle","long_range"],"pros":["Open source design","Replaceable arms","Huge community"],"cons":["Not the most aerodynamic"],"rating":4.6},
+  {"component_type":"frame","name":"ImpulseRC Apex 5 inch","brand":"ImpulseRC","specs":{"size":"5-inch","arm_thickness":"5mm","weight":"105g","material":"Carbon Fiber","stack":"30x30mm"},"price_range":"45-65","compatible_with":{"motor":["2207","2306"],"stack":["30x30mm"]},"use_cases":["racing","freestyle"],"pros":["Extremely durable","Clean design","Tight stack protection"],"cons":["Heavy for racing"],"rating":4.8},
+
+  {"component_type":"camera","name":"Foxeer Razer Mini","brand":"Foxeer","specs":{"sensor":"1/3 CMOS","tvl":"1200TVL","lens":"1.8mm","voltage":"5-40V","format":"16:9/4:3"},"price_range":"15-22","compatible_with":{"vtx":["analog"],"frame":["micro","5-inch"]},"use_cases":["racing","freestyle"],"pros":["Excellent low-light","Wide voltage range","Sharp image"],"cons":["Analog only"],"rating":4.5},
+  {"component_type":"camera","name":"RunCam Phoenix 2","brand":"RunCam","specs":{"sensor":"1/2 CMOS","tvl":"1000TVL","lens":"2.1mm","voltage":"5-36V","format":"16:9"},"price_range":"18-25","compatible_with":{"vtx":["analog"],"frame":["5-inch"]},"use_cases":["freestyle"],"pros":["Great color accuracy","Low latency","Durable"],"cons":["Analog resolution limited"],"rating":4.4},
+
+  {"component_type":"vtx","name":"Rush Tank Ultimate Plus","brand":"Rush","specs":{"power":"800mW max","channels":"48ch","protocol":"SmartAudio","connector":"MMCX","weight":"6g"},"price_range":"20-28","compatible_with":{"camera":["analog"],"frame":["5-inch"]},"use_cases":["freestyle","long_range"],"pros":["High power","Clean signal","SmartAudio control"],"cons":["Gets hot at 800mW"],"rating":4.6},
+  {"component_type":"vtx","name":"TBS Unify Pro32 HV","brand":"TBS","specs":{"power":"800mW max","channels":"40ch","protocol":"SmartAudio","connector":"MMCX","weight":"7g"},"price_range":"30-40","compatible_with":{"camera":["analog"],"frame":["5-inch"]},"use_cases":["racing","freestyle","long_range"],"pros":["Premium quality","Very clean output","Reliable"],"cons":["Expensive"],"rating":4.8},
+
+  {"component_type":"receiver","name":"BetaFPV ELRS Lite Receiver","brand":"BetaFPV","specs":{"protocol":"ELRS 2.4GHz","weight":"0.5g","antenna":"ceramic","output":"CRSF","power":"100mW"},"price_range":"12-16","compatible_with":{"transmitter":["ELRS 2.4GHz"],"frame":["micro","5-inch"]},"use_cases":["racing","freestyle"],"pros":["Ultra lightweight","Cheap","ELRS ecosystem"],"cons":["Ceramic antenna — shorter range than dipole"],"rating":4.3},
+  {"component_type":"receiver","name":"RadioMaster RP3 ELRS","brand":"RadioMaster","specs":{"protocol":"ELRS 2.4GHz","weight":"1.5g","antenna":"T-antenna","output":"CRSF","power":"100mW"},"price_range":"14-18","compatible_with":{"transmitter":["ELRS 2.4GHz"],"frame":["5-inch","long_range"]},"use_cases":["freestyle","long_range"],"pros":["Great range","Diversity antenna","Reliable"],"cons":["Slightly heavier"],"rating":4.6},
+  {"component_type":"receiver","name":"TBS Crossfire Nano RX SE","brand":"TBS","specs":{"protocol":"Crossfire 900MHz","weight":"1.5g","antenna":"dipole","output":"CRSF","power":"100mW"},"price_range":"25-35","compatible_with":{"transmitter":["TBS Crossfire"],"frame":["5-inch","long_range"]},"use_cases":["long_range","freestyle"],"pros":["Excellent range (20km+)","Rock solid link","Industry proven"],"cons":["Expensive ecosystem","900MHz antenna larger"],"rating":4.7}
 ]

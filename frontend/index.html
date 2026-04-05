@@ -23,6 +23,10 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body class="text-slate-200 antialiased overflow-hidden">
@@ -78,10 +82,28 @@
             </div>
 
             <!-- Input Bar -->
-            <div class="glass-panel rounded-2xl p-3 flex items-center gap-3 border border-white/10 shadow-2xl">
-                <input type="text" id="chat-input" placeholder="Type your question about drone building, troubleshooting..." 
-                    class="flex-grow bg-transparent border-none focus:ring-0 text-slate-200 placeholder-slate-500 px-4 py-2">
-                <button id="send-btn" class="bg-blue-600 hover:bg-blue-500 text-white w-10 h-10 rounded-xl flex items-center justify-center transition-all shadow-lg active:scale-95">
+            <div class="glass-panel rounded-2xl p-3 flex flex-col sm:flex-row sm:items-center gap-3 border border-white/10 shadow-2xl">
+                <div class="flex flex-wrap items-center gap-2 shrink-0 px-1 order-2 sm:order-1">
+                    <label for="ai-provider-select" class="text-[10px] font-semibold uppercase tracking-wider text-slate-500 whitespace-nowrap">AI</label>
+                    <select id="ai-provider-select" title="Where to get the answer"
+                        class="bg-slate-800/90 text-slate-200 text-xs sm:text-sm rounded-lg border border-white/10 px-2 py-2 min-w-0 max-w-[11rem] sm:max-w-none focus:outline-none focus:ring-1 focus:ring-blue-500/50">
+                        <option value="auto">Auto (fastest)</option>
+                        <option value="ollama">Ollama (local)</option>
+                        <option value="openai">OpenAI</option>
+                        <option value="groq">Groq</option>
+                        <option value="openrouter">OpenRouter</option>
+                        <option value="gemini">Gemini</option>
+                    </select>
+                    <label for="response-detail-select" class="text-[10px] font-semibold uppercase tracking-wider text-slate-500 whitespace-nowrap">Answer</label>
+                    <select id="response-detail-select" title="Response length"
+                        class="bg-slate-800/90 text-slate-200 text-xs sm:text-sm rounded-lg border border-white/10 px-2 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500/50">
+                        <option value="standard">Standard</option>
+                        <option value="detailed">Detailed</option>
+                    </select>
+                </div>
+                <input type="text" id="chat-input" placeholder="Type your question about drone building, troubleshooting..."
+                    class="flex-grow min-w-0 bg-transparent border-none focus:ring-0 text-slate-200 placeholder-slate-500 px-4 py-2 order-1 sm:order-2">
+                <button id="send-btn" class="bg-blue-600 hover:bg-blue-500 text-white w-10 h-10 rounded-xl flex items-center justify-center transition-all shadow-lg active:scale-95 shrink-0 order-3 self-end sm:self-auto">
                     <i class="fas fa-paper-plane text-sm"></i>
                 </button>
             </div>

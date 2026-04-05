@@ -5,44 +5,122 @@
     "difficulty": "beginner",
     "estimated_time": "3-4 hours",
     "budget": "300-400",
-    "required_tools": ["soldering iron", "hex drivers", "wire cutters", "multimeter", "smoke stopper"],
+    "required_tools": ["soldering iron 60W+", "hex drivers (1.5mm, 2mm, 2.5mm)", "wire cutters", "multimeter", "smoke stopper", "heat shrink tubing", "blue Loctite"],
     "parts_list": [
-      {
-        "component_type": "motor",
-        "name": "EMAX RS2207 2600KV",
-        "quantity": 4,
-        "estimated_cost": 60
-      },
-      {
-        "component_type": "flight_controller",
-        "name": "SpeedyBee F405 V3 Stack",
-        "quantity": 1,
-        "estimated_cost": 70
-      }
+      {"component_type": "motor", "name": "EMAX RS2207 2600KV", "quantity": 4, "estimated_cost": 60},
+      {"component_type": "flight_controller", "name": "SpeedyBee F405 V3 Stack (FC+ESC)", "quantity": 1, "estimated_cost": 70},
+      {"component_type": "frame", "name": "TBS Source One V5 5-inch", "quantity": 1, "estimated_cost": 40},
+      {"component_type": "battery", "name": "CNHL 1500mAh 4S 100C", "quantity": 2, "estimated_cost": 48},
+      {"component_type": "receiver", "name": "BetaFPV ELRS Lite", "quantity": 1, "estimated_cost": 15},
+      {"component_type": "camera", "name": "Foxeer Razer Mini", "quantity": 1, "estimated_cost": 20},
+      {"component_type": "vtx", "name": "Rush Tank Ultimate Plus", "quantity": 1, "estimated_cost": 25},
+      {"component_type": "propeller", "name": "HQ Prop V2S 5x4.3x3", "quantity": 8, "estimated_cost": 10}
     ],
+    "total_component_cost": 288,
     "steps": [
-      {
-        "step_number": 1,
-        "title": "Prepare the frame",
-        "description": "Clean and inspect the carbon fiber frame for any manufacturing defects. Install the standoffs.",
-        "duration": "15 minutes",
-        "tips": ["Check for cracks", "Remove protective film if present"]
-      },
-      {
-        "step_number": 2,
-        "title": "Mount the ESC and FC",
-        "description": "Install the ESC stack in the center of the frame. Ensure correct orientation.",
-        "duration": "20 minutes",
-        "tips": ["Use rubber vibration dampeners", "Check clearance from the frame"]
-      },
-      {
-        "step_number": 3,
-        "title": "Install Motors",
-        "description": "Secure the four motors to the arms using appropriate screws. Solder motor wires to the ESC.",
-        "duration": "45 minutes",
-        "tips": ["Don't over-tighten screws", "Check for screw length to avoid shorting motor windings"]
-      }
+      {"step_number": 1, "title": "Test all components on the bench", "description": "Before assembly, connect each component individually to verify it works: spin motors, check FC connects to Betaflight, verify camera outputs video, bind receiver.", "duration": "30 minutes", "tips": ["Use smoke stopper for first power-on", "Save time debugging later"]},
+      {"step_number": 2, "title": "Prepare the frame", "description": "Remove protective film from carbon plates. Check for cracks. Install standoffs on the bottom plate.", "duration": "15 minutes", "tips": ["Check for hairline cracks", "Use blue Loctite on standoff screws"]},
+      {"step_number": 3, "title": "Mount ESC and solder power", "description": "Solder XT60 pigtail to ESC power pads. Add a 1000μF low-ESR capacitor across battery pads. Mount ESC to frame bottom plate using rubber standoffs.", "duration": "25 minutes", "tips": ["Tin pads and wires before joining", "Capacitor as close to battery pads as possible"], "warning": "Double check polarity on XT60 — reversed polarity will destroy the ESC instantly"},
+      {"step_number": 4, "title": "Mount FC on ESC stack", "description": "Connect FC to ESC via ribbon cable or solder signal wires. Use rubber grommets between FC and standoffs for vibration isolation.", "duration": "15 minutes", "tips": ["Arrow on FC must point forward", "Don't over-tighten stack bolts"]},
+      {"step_number": 5, "title": "Solder receiver to FC", "description": "Solder receiver TX/RX/5V/GND wires to the correct UART pads on the FC. Mount receiver with double-sided tape, antenna out through the frame.", "duration": "20 minutes", "tips": ["TX goes to RX pad and vice versa", "Route antenna away from VTX and ESC"]},
+      {"step_number": 6, "title": "Install motors", "description": "Secure motors to frame arms using appropriate screws. Solder motor wires to ESC motor pads (order doesn't matter — you'll fix direction in software).", "duration": "45 minutes", "tips": ["Don't use screws too long — they'll hit motor windings", "Keep motor wires same length"], "warning": "Screws that are too long will short motor windings and destroy the motor"},
+      {"step_number": 7, "title": "Configure Betaflight", "description": "Connect FC to computer. Set up: motor protocol (DSHOT600), receiver protocol (CRSF), verify motor direction, calibrate accelerometer, set up modes (Arm, Beeper, Angle).", "duration": "30 minutes", "tips": ["Back up your config with CLI 'dump'", "Test motor direction with props OFF"]},
+      {"step_number": 8, "title": "Install camera and VTX", "description": "Mount camera in frame cage. Mount VTX with double-sided tape. Solder camera/VTX video and power wires to FC. Connect antenna to VTX.", "duration": "20 minutes", "tips": ["Never power VTX without antenna — it will burn out", "Route video wires away from motor wires"]},
+      {"step_number": 9, "title": "Final assembly and first flight", "description": "Cable management with zip ties. Mount props (correct direction!). Smoke test with smoke stopper. Then go fly!", "duration": "20 minutes", "tips": ["Double check prop direction matches motor spin", "First hover at 1 foot for 10 seconds to verify stability"]}
     ],
+    "tags": ["racing", "5-inch", "beginner", "4S"],
     "video_url": "https://www.youtube.com/watch?v=L2G5Yl1E4uE"
+  },
+  {
+    "title": "6S Freestyle 5-inch Build Guide",
+    "drone_type": "freestyle",
+    "difficulty": "intermediate",
+    "estimated_time": "4-5 hours",
+    "budget": "400-550",
+    "required_tools": ["soldering iron 60W+", "hex drivers", "wire cutters", "multimeter", "smoke stopper", "heat shrink", "zip ties"],
+    "parts_list": [
+      {"component_type": "motor", "name": "T-Motor F60 Pro V 1750KV", "quantity": 4, "estimated_cost": 100},
+      {"component_type": "flight_controller", "name": "Matek F722-SE", "quantity": 1, "estimated_cost": 40},
+      {"component_type": "esc", "name": "SpeedyBee BLS 55A 4-in-1", "quantity": 1, "estimated_cost": 40},
+      {"component_type": "frame", "name": "ImpulseRC Apex 5-inch", "quantity": 1, "estimated_cost": 55},
+      {"component_type": "battery", "name": "GNB 1300mAh 6S 120C", "quantity": 2, "estimated_cost": 64},
+      {"component_type": "receiver", "name": "RadioMaster RP3 ELRS", "quantity": 1, "estimated_cost": 16},
+      {"component_type": "camera", "name": "RunCam Phoenix 2", "quantity": 1, "estimated_cost": 22},
+      {"component_type": "vtx", "name": "TBS Unify Pro32 HV", "quantity": 1, "estimated_cost": 35},
+      {"component_type": "propeller", "name": "Gemfan 51466 V2", "quantity": 8, "estimated_cost": 12}
+    ],
+    "total_component_cost": 384,
+    "steps": [
+      {"step_number": 1, "title": "Bench test all components", "description": "Verify each component works individually before building.", "duration": "30 minutes", "tips": ["Use smoke stopper"]},
+      {"step_number": 2, "title": "Assemble frame", "description": "Build the Apex frame. Install standoffs. Check arm fit.", "duration": "20 minutes", "tips": ["Loctite on all frame bolts"]},
+      {"step_number": 3, "title": "Solder ESC power and capacitor", "description": "XT60 to ESC. Add 35V 1000μF cap.", "duration": "20 minutes", "tips": ["Use 35V cap for 6S — 25V will pop"], "warning": "6S voltage can exceed 25V — use 35V rated capacitor minimum"},
+      {"step_number": 4, "title": "Install FC stack", "description": "Mount ESC, then FC. Solder motor and receiver wires.", "duration": "45 minutes", "tips": ["Double check UART mapping"]},
+      {"step_number": 5, "title": "Motor installation and soldering", "description": "Mount motors. Solder 3 wires per motor to ESC pads.", "duration": "40 minutes", "tips": ["Check screw length for motor size"]},
+      {"step_number": 6, "title": "Betaflight configuration", "description": "DSHOT600, bidirectional DSHOT enabled, RPM filter ON. CRSF receiver. PID defaults. Set up GPS rescue if GPS installed.", "duration": "30 minutes", "tips": ["Enable RPM filter — huge improvement on 6S"]},
+      {"step_number": 7, "title": "Camera, VTX, and final wiring", "description": "Mount camera and VTX. Solder video path. Configure SmartAudio. OSD setup.", "duration": "25 minutes", "tips": ["Never power VTX without antenna"]},
+      {"step_number": 8, "title": "Maiden flight", "description": "Smoke test. Mount props. Hover test. Fly and enjoy the 6S power!", "duration": "15 minutes", "tips": ["6S is punchy — start with low rates"]}
+    ],
+    "tags": ["freestyle", "5-inch", "intermediate", "6S"],
+    "video_url": ""
+  },
+  {
+    "title": "Budget 3-inch Micro Toothpick Build",
+    "drone_type": "micro",
+    "difficulty": "beginner",
+    "estimated_time": "2-3 hours",
+    "budget": "100-150",
+    "required_tools": ["soldering iron", "hex drivers", "wire cutters", "heat shrink"],
+    "parts_list": [
+      {"component_type": "motor", "name": "BetaFPV 1404 3800KV", "quantity": 4, "estimated_cost": 28},
+      {"component_type": "flight_controller", "name": "SpeedyBee F405 20x20 AIO", "quantity": 1, "estimated_cost": 35},
+      {"component_type": "frame", "name": "Flywoo Explorer 3-inch", "quantity": 1, "estimated_cost": 15},
+      {"component_type": "battery", "name": "GNB 650mAh 4S HV", "quantity": 2, "estimated_cost": 18},
+      {"component_type": "receiver", "name": "BetaFPV ELRS Lite", "quantity": 1, "estimated_cost": 14},
+      {"component_type": "camera", "name": "Foxeer Razer Nano", "quantity": 1, "estimated_cost": 16},
+      {"component_type": "propeller", "name": "Gemfan 3018 2-blade", "quantity": 8, "estimated_cost": 4}
+    ],
+    "total_component_cost": 130,
+    "steps": [
+      {"step_number": 1, "title": "Build the frame", "description": "Assemble the toothpick frame. These are simple — usually just a top and bottom plate.", "duration": "10 minutes", "tips": ["Toothpick frames are fragile — handle gently"]},
+      {"step_number": 2, "title": "Mount AIO flight controller", "description": "AIO boards have ESC built in. Mount with rubber grommets on 20x20 pattern.", "duration": "15 minutes", "tips": ["AIO simplifies wiring significantly"]},
+      {"step_number": 3, "title": "Solder motors", "description": "4 motor wires each. Toothpick motors are small — use fine solder tip.", "duration": "30 minutes", "tips": ["Use thin solder wire for small pads"]},
+      {"step_number": 4, "title": "Camera and VTX setup", "description": "Camera and VTX are usually combined on these builds. Wire and mount.", "duration": "15 minutes", "tips": ["Cable manage carefully — space is tight"]},
+      {"step_number": 5, "title": "Configure and fly", "description": "Flash Betaflight, set up receiver, verify motors, and go fly indoor or outdoor.", "duration": "20 minutes", "tips": ["Great for park flying and indoors"]}
+    ],
+    "tags": ["micro", "3-inch", "beginner", "budget", "toothpick"],
+    "video_url": ""
+  },
+  {
+    "title": "7-inch Long Range Build Guide",
+    "drone_type": "long_range",
+    "difficulty": "intermediate",
+    "estimated_time": "5-6 hours",
+    "budget": "450-600",
+    "required_tools": ["soldering iron 60W+", "hex drivers", "wire cutters", "multimeter", "smoke stopper", "heat shrink", "GPS module mount"],
+    "parts_list": [
+      {"component_type": "motor", "name": "iFlight XING 2806.5 1300KV", "quantity": 4, "estimated_cost": 80},
+      {"component_type": "flight_controller", "name": "Matek F722-SE", "quantity": 1, "estimated_cost": 40},
+      {"component_type": "esc", "name": "Holybro Tekko32 50A 4-in-1", "quantity": 1, "estimated_cost": 45},
+      {"component_type": "frame", "name": "TBS Source One 7-inch", "quantity": 1, "estimated_cost": 45},
+      {"component_type": "battery", "name": "CNHL 2200mAh 6S 70C", "quantity": 2, "estimated_cost": 70},
+      {"component_type": "receiver", "name": "TBS Crossfire Nano RX SE", "quantity": 1, "estimated_cost": 30},
+      {"component_type": "camera", "name": "RunCam Phoenix 2", "quantity": 1, "estimated_cost": 22},
+      {"component_type": "vtx", "name": "Rush Tank Ultimate Plus", "quantity": 1, "estimated_cost": 25},
+      {"component_type": "gps", "name": "BN-220 GPS Module", "quantity": 1, "estimated_cost": 12},
+      {"component_type": "propeller", "name": "HQ Prop 7x3.5x3", "quantity": 8, "estimated_cost": 10}
+    ],
+    "total_component_cost": 379,
+    "steps": [
+      {"step_number": 1, "title": "Test everything on bench", "description": "Verify all components including GPS module getting satellite fix.", "duration": "40 minutes", "tips": ["GPS needs outdoor test — won't fix indoors"]},
+      {"step_number": 2, "title": "Frame assembly", "description": "7-inch frames are larger. Take time with standoffs and motor mounts.", "duration": "25 minutes", "tips": ["Longer arms need Loctite on all screws"]},
+      {"step_number": 3, "title": "ESC and power wiring", "description": "Solder ESC power. Add 35V capacitor. 7-inch draws more current — clean solder joints critical.", "duration": "25 minutes", "tips": ["Use thicker wire for battery leads (14AWG)"]},
+      {"step_number": 4, "title": "FC stack and GPS wiring", "description": "Mount FC. Wire GPS to UART. Wire Crossfire RX to another UART.", "duration": "40 minutes", "tips": ["GPS TX→FC RX and GPS RX→FC TX"]},
+      {"step_number": 5, "title": "Motor installation", "description": "Mount 2806.5 motors on 7-inch arms. Solder motor wires.", "duration": "40 minutes", "tips": ["Verify motor mounting pattern matches frame"]},
+      {"step_number": 6, "title": "Betaflight setup with GPS Rescue", "description": "Configure GPS, GPS Rescue, failsafe, Crossfire CRSF. Set low rates for smooth flying.", "duration": "40 minutes", "tips": ["Set GPS Rescue altitude to 50m", "Test failsafe on bench"], "warning": "Always configure and test failsafe before long range flights"},
+      {"step_number": 7, "title": "Camera, VTX, final assembly", "description": "Mount camera and VTX. GPS module on top of frame on elevated mount for clear sky view.", "duration": "20 minutes", "tips": ["GPS antenna must face skyward, away from carbon fiber"]},
+      {"step_number": 8, "title": "Range test and maiden", "description": "Test radio range at ground level. Verify GPS fix (10+ sats). Then maiden flight.", "duration": "30 minutes", "tips": ["Start with short flights to verify GPS rescue works"]}
+    ],
+    "tags": ["long_range", "7-inch", "intermediate", "6S", "gps"],
+    "video_url": ""
   }
 ]

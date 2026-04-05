@@ -3,69 +3,189 @@
     "problem": "Drone won't arm",
     "symptoms": ["Beeping pattern", "LED flashing red", "No motor response"],
     "possible_causes": [
-      {"cause": "Accelerometer not calibrated", "solution": "Calibrate accelerometer in Betaflight Setup tab", "probability": "high", "difficulty": "easy"},
-      {"cause": "Radio not bound or no signal", "solution": "Bind receiver to transmitter, check Receiver tab in Betaflight", "probability": "high", "difficulty": "easy"},
-      {"cause": "Arm switch not configured", "solution": "Set up an Arm mode in Betaflight Modes tab with a switch", "probability": "medium", "difficulty": "easy"},
-      {"cause": "Throttle not at minimum", "solution": "Push throttle stick all the way down before arming", "probability": "medium", "difficulty": "easy"}
+      {"cause": "Accelerometer not calibrated", "solution": "Calibrate accelerometer in Betaflight Setup tab — place drone on flat surface and click Calibrate", "probability": "high", "difficulty": "easy"},
+      {"cause": "Radio not bound or no signal", "solution": "Bind receiver to transmitter. Verify channels move in Betaflight Receiver tab", "probability": "high", "difficulty": "easy"},
+      {"cause": "Arm switch not configured", "solution": "Go to Betaflight Modes tab, add ARM on a switch channel (AUX1-4)", "probability": "medium", "difficulty": "easy"},
+      {"cause": "Throttle not at minimum", "solution": "Push throttle stick all the way down before arming", "probability": "medium", "difficulty": "easy"},
+      {"cause": "RUNAWAY_TAKEOFF_PREVENTION", "solution": "If recently crashed, unplug and replug battery — this flag resets", "probability": "medium", "difficulty": "easy"}
     ],
-    "diagnostic_steps": [
-      "Open Betaflight CLI and type 'status' — it shows exactly why arm is blocked",
-      "Check Receiver tab — move sticks and verify channel inputs respond",
-      "Check accelerometer calibration in Setup tab"
-    ],
+    "diagnostic_steps": ["Open Betaflight CLI and type 'status' — shows exact arm-block reasons", "Check Receiver tab — move sticks and verify inputs", "Check accelerometer calibration in Setup tab"],
     "category": "arming_issues",
     "severity": "critical",
-    "keywords": ["arm", "won't arm", "arming", "beep", "not arming"]
+    "keywords": ["arm", "won't arm", "arming", "beep", "not arming", "disarmed"]
   },
   {
-    "problem": "Drone flips on takeoff",
-    "symptoms": ["Immediate flip after throttle up", "Rolls to one side on liftoff"],
+    "problem": "Drone flips over and motors scream on takeoff",
+    "symptoms": ["Immediate flip after throttle up", "Motors spin to maximum RPM instantly", "Crashes sideways"],
     "possible_causes": [
-      {"cause": "Wrong motor direction", "solution": "Verify motor spin directions in Betaflight Motors tab — standard X: FL=CCW, FR=CW, RL=CW, RR=CCW", "probability": "high", "difficulty": "easy"},
-      {"cause": "Wrong prop on wrong motor", "solution": "CW props on CW motors, CCW props on CCW motors — check markings on props", "probability": "high", "difficulty": "easy"},
-      {"cause": "FC orientation wrong", "solution": "Set correct yaw offset in Betaflight Configuration tab", "probability": "medium", "difficulty": "easy"}
+      {"cause": "Wrong motor direction", "solution": "Check motor spin in Betaflight Motors tab. FL=CCW, FR=CW, RL=CW, RR=CCW for props-out. 90% of 'turtling' or instant flips are due to the FC expecting a motor to push up while it's pushing down.", "probability": "high", "difficulty": "easy"},
+      {"cause": "Wrong prop orientation", "solution": "Verify if you are running 'Props In' or 'Props Out' in Betaflight. Ensure props match that setting.", "probability": "high", "difficulty": "easy"},
+      {"cause": "Motor numbering mismatch", "solution": "Verify the motor numbering (1, 2, 3, 4) matches the Betaflight diagram exactly.", "probability": "medium", "difficulty": "easy"},
+      {"cause": "FC orientation (Arrow)", "solution": "Ensure the FC orientation arrow is pointing forward. Adjust yaw offset in Configuration tab if mounted sideways.", "probability": "medium", "difficulty": "easy"}
     ],
-    "diagnostic_steps": [
-      "Remove props, spin motors in Betaflight — verify spin direction matches layout",
-      "Check prop markings match motor spin direction",
-      "Verify FC is facing forward in Betaflight (horizon should tilt correctly)"
-    ],
+    "diagnostic_steps": ["Remove props, spin each motor in Betaflight Motors tab — verify direction", "Check prop markings match motor direction", "Verify FC arrow points forward"],
     "category": "takeoff_issues",
     "severity": "critical",
-    "keywords": ["flip", "takeoff", "roll", "spin", "crash", "flips"]
+    "keywords": ["flip", "takeoff", "scream", "motors scream", "flip over", "instant flip"]
   },
   {
     "problem": "ESC beeping continuously",
     "symptoms": ["Constant beeping after battery connect", "Rhythmic beep pattern"],
     "possible_causes": [
-      {"cause": "No throttle signal from FC", "solution": "Check ESC signal wire connection to FC, verify ESC protocol in Betaflight", "probability": "high", "difficulty": "medium"},
-      {"cause": "Battery voltage too low", "solution": "Charge or replace the battery", "probability": "medium", "difficulty": "easy"},
-      {"cause": "ESC needs calibration", "solution": "Run ESC calibration: set throttle to max, connect battery, wait for beeps, lower throttle", "probability": "medium", "difficulty": "medium"}
+      {"cause": "No throttle signal from FC", "solution": "Check ESC signal wire to FC, verify ESC protocol (DSHOT) in Betaflight", "probability": "high", "difficulty": "medium"},
+      {"cause": "Battery voltage too low", "solution": "Charge battery. Check voltage with multimeter — should be 4.0V+ per cell", "probability": "medium", "difficulty": "easy"},
+      {"cause": "ESC needs calibration", "solution": "Calibrate: max throttle → connect battery → wait for beeps → lower throttle", "probability": "medium", "difficulty": "medium"}
     ],
-    "diagnostic_steps": [
-      "Count the beep pattern — each ESC brand has specific codes",
-      "Check battery voltage with multimeter",
-      "Verify signal wire connections between ESC and FC"
-    ],
+    "diagnostic_steps": ["Count the beep pattern — each brand has specific codes", "Check battery voltage with multimeter", "Verify signal wire connections between ESC and FC"],
     "category": "esc_issues",
     "severity": "high",
-    "keywords": ["esc", "beep", "beeping", "sound", "noise"]
+    "keywords": ["esc", "beep", "beeping", "sound", "noise", "continuous beep"]
   },
   {
     "problem": "FPV video has static or interference",
-    "symptoms": ["Grainy video", "Rolling static lines", "Complete video loss"],
+    "symptoms": ["Grainy video", "Rolling lines", "Complete video loss at range"],
     "possible_causes": [
-      {"cause": "VTX and goggles on different channels", "solution": "Match VTX and goggle channel/band exactly (e.g., Raceband CH3)", "probability": "high", "difficulty": "easy"},
-      {"cause": "VTX antenna loose or broken", "solution": "Check antenna connector, replace if damaged", "probability": "high", "difficulty": "easy"},
-      {"cause": "Electrical interference from motors/ESCs", "solution": "Add capacitor to VTX power, route VTX wires away from motor wires", "probability": "medium", "difficulty": "medium"}
+      {"cause": "VTX and goggles on different channels", "solution": "Match VTX and goggle channel/band exactly (e.g., Raceband CH3 = 5769MHz)", "probability": "high", "difficulty": "easy"},
+      {"cause": "VTX antenna loose or broken", "solution": "Inspect antenna connector (SMA/MMCX), replace if damaged", "probability": "high", "difficulty": "easy"},
+      {"cause": "Electrical noise from motors/ESCs", "solution": "Add low-ESR capacitor (1000μF 35V) across battery pads. Route VTX wires away from motors", "probability": "medium", "difficulty": "medium"}
     ],
-    "diagnostic_steps": [
-      "Verify goggles are on exact same band and channel as VTX",
-      "Inspect antenna connector for damage",
-      "Test at very close range — if clean up close, it's a signal/power issue at range"
-    ],
+    "diagnostic_steps": ["Verify goggles on same band/channel as VTX", "Inspect antenna for damage", "Test at close range — clean = range/power issue"],
     "category": "fpv_issues",
     "severity": "medium",
-    "keywords": ["fpv", "video", "static", "interference", "goggles", "vtx", "signal"]
+    "keywords": ["fpv", "video", "static", "interference", "goggles", "vtx"]
+  },
+  {
+    "problem": "Drone drifts in level/angle mode",
+    "symptoms": ["Drifts left or right", "Won't hover level", "Needs constant stick correction"],
+    "possible_causes": [
+      {"cause": "Accelerometer needs calibration", "solution": "Place drone on perfectly flat surface, calibrate in Betaflight Setup tab", "probability": "high", "difficulty": "easy"},
+      {"cause": "FC not mounted level", "solution": "Check physical FC mounting. Use board alignment trims in Betaflight Configuration", "probability": "medium", "difficulty": "medium"},
+      {"cause": "Motor or prop damage", "solution": "Inspect all props and motors. A bent prop or failing bearing causes uneven thrust", "probability": "medium", "difficulty": "easy"}
+    ],
+    "diagnostic_steps": ["Calibrate accelerometer on flat surface", "Check Betaflight Setup tab — horizon indicator should be level when drone is flat", "Swap props between arms to isolate bad prop"],
+    "category": "flight_issues",
+    "severity": "medium",
+    "keywords": ["drift", "level", "angle", "hover", "straight", "tilting"]
+  },
+  {
+    "problem": "Motors spin but drone has no power",
+    "symptoms": ["Props spinning slowly", "Cannot lift off", "Sluggish response"],
+    "possible_causes": [
+      {"cause": "Motor protocol mismatch", "solution": "Verify ESC protocol in Betaflight matches ESC firmware (DSHOT300/600)", "probability": "high", "difficulty": "easy"},
+      {"cause": "Props on upside down", "solution": "Check prop direction markings. Curved/beveled edge should lead rotation direction", "probability": "high", "difficulty": "easy"},
+      {"cause": "Battery nearly depleted", "solution": "Check battery voltage — below 3.5V/cell under load means pack is dead", "probability": "medium", "difficulty": "easy"},
+      {"cause": "ESC current limit too low", "solution": "Check ESC amp rating vs motor draw. ESC may be thermally limiting", "probability": "low", "difficulty": "medium"}
+    ],
+    "diagnostic_steps": ["Check battery voltage under load", "Verify prop orientation", "In Betaflight Motors tab, test motor spin up to 20% — should spin strong"],
+    "category": "power_issues",
+    "severity": "high",
+    "keywords": ["no power", "weak", "slow", "can't fly", "underpowered", "no lift"]
+  },
+  {
+    "problem": "Betaflight won't connect via USB",
+    "symptoms": ["No COM port detected", "Driver errors", "Configurator shows No serial port"],
+    "possible_causes": [
+      {"cause": "Bad USB cable (charge-only cable)", "solution": "Try a different USB cable — must be a DATA cable, not charge-only", "probability": "high", "difficulty": "easy"},
+      {"cause": "Missing STM32 drivers", "solution": "Install Zadig drivers (WinUSB) or STM32 VCP drivers for your FC", "probability": "high", "difficulty": "medium"},
+      {"cause": "FC in DFU/bootloader mode", "solution": "If LED shows DFU mode, flash firmware via DFU in Configurator Firmware Flasher", "probability": "medium", "difficulty": "medium"},
+      {"cause": "FC USB port damaged", "solution": "Inspect solder joints on USB connector. Re-solder or use UART-to-USB adapter as backup", "probability": "low", "difficulty": "hard"}
+    ],
+    "diagnostic_steps": ["Try different USB cable (data cable)", "Check Device Manager for 'STM32' or 'DFU' device", "Try different USB port on computer"],
+    "category": "connection_issues",
+    "severity": "high",
+    "keywords": ["usb", "connect", "betaflight", "com port", "driver", "configurator"]
+  },
+  {
+    "problem": "Radio range is very short",
+    "symptoms": ["Failsafe at 200-300m", "RSSI drops rapidly", "Signal loss warnings"],
+    "possible_causes": [
+      {"cause": "RX antenna damaged or poorly mounted", "solution": "Check antenna solder joint. Mount antenna vertical, away from carbon fiber. Use antenna tube", "probability": "high", "difficulty": "easy"},
+      {"cause": "Wrong RF power setting on TX", "solution": "Check TX module power output. ELRS: ensure 250mW+. FrSky: check power setting in module", "probability": "medium", "difficulty": "easy"},
+      {"cause": "Antenna diversity not configured", "solution": "If using diversity RX, ensure both antennas are connected and at 90° to each other", "probability": "medium", "difficulty": "easy"},
+      {"cause": "Interference from VTX", "solution": "Separate RX antenna from VTX antenna by at least 3cm. Use different polarization", "probability": "low", "difficulty": "medium"}
+    ],
+    "diagnostic_steps": ["Check RSSI/LQ in OSD at increasing distances", "Inspect antenna physical condition", "Test with VTX off to rule out interference"],
+    "category": "radio_issues",
+    "severity": "high",
+    "keywords": ["range", "signal", "failsafe", "rssi", "short range", "radio"]
+  },
+  {
+    "problem": "Horizontal lines in video (Electrical Noise)",
+    "symptoms": ["Clear video when motors off", "Horizontal lines as soon as motors arm", "Worse at high throttle"],
+    "possible_causes": [
+      {"cause": "ESC/Motor Electrical Noise", "solution": "Solder a Low ESR Capacitor (e.g., 35V 1000uF) directly to the main battery pads to filter spikes.", "probability": "high", "difficulty": "medium"},
+      {"cause": "EMI (Electromagnetic Interference)", "solution": "Ensure your signal wires (Video and Ground) are twisted together to shield them from motor noise.", "probability": "medium", "difficulty": "easy"},
+      {"cause": "Ground Loop", "solution": "Ensure VTX and Camera share the same ground point on the FC.", "probability": "low", "difficulty": "medium"}
+    ],
+    "diagnostic_steps": ["Check if noise increases with throttle", "Verify capacitor is present and soldered well", "Twist video signal and ground wires together"],
+    "category": "fpv_issues",
+    "severity": "medium",
+    "keywords": ["noise", "lines", "horizontal", "interference", "electrical noise", "capacitor"]
+  },
+  {
+    "problem": "Propellers breaking frequently",
+    "symptoms": ["Props cracking on landing", "Blade tips snapping", "Props flying off mid-flight"],
+    "possible_causes": [
+      {"cause": "Landing too hard", "solution": "Practice softer landings. Cut throttle 1-2 feet above ground and let it drop", "probability": "high", "difficulty": "easy"},
+      {"cause": "Cheap/brittle props", "solution": "Use quality brands: HQ Prop, Gemfan, DAL. Avoid no-name props from random sellers", "probability": "medium", "difficulty": "easy"},
+      {"cause": "Wrong prop nut torque", "solution": "Tighten prop nuts firmly but not over-torque. Use nylock nuts — they self-lock", "probability": "medium", "difficulty": "easy"}
+    ],
+    "diagnostic_steps": ["Inspect prop material — polycarbonate is more flexible than nylon", "Check prop nut tightness", "Consider prop guards for indoor flying"],
+    "category": "parts_issues",
+    "severity": "low",
+    "keywords": ["prop", "breaking", "crack", "snap", "propeller", "damage"]
+  },
+  {
+    "problem": "Motor making grinding noise",
+    "symptoms": ["Scratching sound when spinning", "Vibration from one motor", "Motor feels rough when spun by hand"],
+    "possible_causes": [
+      {"cause": "Damaged bearings", "solution": "Replace motor bearings or replace the entire motor. Bearings degrade from crash landings", "probability": "high", "difficulty": "medium"},
+      {"cause": "Debris inside motor bell", "solution": "Remove motor bell (C-clip), clean with compressed air, remove grass/dirt", "probability": "high", "difficulty": "easy"},
+      {"cause": "Bent motor shaft", "solution": "Spin motor slowly — if bell wobbles visually, shaft is bent. Replace motor or shaft", "probability": "medium", "difficulty": "medium"}
+    ],
+    "diagnostic_steps": ["Spin motor by hand — should be smooth with no gritty feeling", "Remove bell and inspect for debris", "Check shaft straightness by visual inspection during slow spin"],
+    "category": "motor_issues",
+    "severity": "medium",
+    "keywords": ["grinding", "noise", "motor", "bearing", "rough", "vibration"]
+  },
+  {
+    "problem": "Battery draining unusually fast",
+    "symptoms": ["Flight time dropped 30%+", "Voltage sag under load", "Battery gets hot during flight"],
+    "possible_causes": [
+      {"cause": "Battery end of life (high internal resistance)", "solution": "Check cell IR on charger. If >10mΩ per cell or cells mismatched, retire the pack", "probability": "high", "difficulty": "easy"},
+      {"cause": "Motor or PID issue causing excessive current", "solution": "Check motor temperatures post-flight. Hot motors = excessive current. Lower D gains or fix vibration", "probability": "medium", "difficulty": "medium"},
+      {"cause": "ESC drawing high idle current", "solution": "Check motor idle (min throttle) in Betaflight. Lower digital idle if motors spin fast at rest", "probability": "low", "difficulty": "easy"}
+    ],
+    "diagnostic_steps": ["Compare flight time across different batteries", "Check cell IR on charger after cooling", "Monitor current draw in Betaflight OSD"],
+    "category": "power_issues",
+    "severity": "medium",
+    "keywords": ["battery", "drain", "fast", "short flight", "voltage sag", "hot battery"]
+  },
+  {
+    "problem": "OSD not displaying on FPV feed",
+    "symptoms": ["No text overlay in goggles", "Blank FPV with no stats", "OSD elements missing"],
+    "possible_causes": [
+      {"cause": "OSD not enabled in Betaflight", "solution": "Go to Betaflight OSD tab and enable elements. Ensure at least battery voltage is checked", "probability": "high", "difficulty": "easy"},
+      {"cause": "OSD chip on FC not connected to camera path", "solution": "Verify camera video-in goes to FC OSD input, and FC OSD output goes to VTX video-in", "probability": "medium", "difficulty": "medium"},
+      {"cause": "Wrong OSD font", "solution": "Upload correct font via Betaflight OSD tab → Font Manager. Ensure font matches display type", "probability": "low", "difficulty": "easy"}
+    ],
+    "diagnostic_steps": ["Check OSD tab in Betaflight — enable some elements", "Verify physical wiring: camera → FC → VTX", "Try uploading font via Font Manager"],
+    "category": "fpv_issues",
+    "severity": "low",
+    "keywords": ["osd", "display", "text", "overlay", "battery voltage", "screen"]
+  },
+  {
+    "problem": "GPS won't get a satellite fix",
+    "symptoms": ["0 satellites for minutes", "GPS Rescue won't arm", "No position data in OSD"],
+    "possible_causes": [
+      {"cause": "GPS module obstructed by carbon fiber", "solution": "Mount GPS on a raise with clear sky view — above the frame using a mast/pedestal", "probability": "high", "difficulty": "easy"},
+      {"cause": "GPS configured on wrong UART/baud", "solution": "Check Betaflight Ports tab — GPS must be on correct UART at 115200 baud", "probability": "medium", "difficulty": "easy"},
+      {"cause": "GPS first cold start takes time", "solution": "Allow 2-5 minutes for cold start fix. Subsequent fixes (warm start) are faster", "probability": "medium", "difficulty": "easy"},
+      {"cause": "Electrical interference from ESCs/VTX", "solution": "Mount GPS far from ESCs and VTX. Use shielding or ferrite bead on GPS cable", "probability": "low", "difficulty": "medium"}
+    ],
+    "diagnostic_steps": ["Check GPS tab in Betaflight — verify module is communicating", "Wait 5 minutes outdoors with clear sky", "Check wiring: TX→RX, RX→TX between GPS and FC"],
+    "category": "gps_issues",
+    "severity": "medium",
+    "keywords": ["gps", "satellite", "fix", "no signal", "position", "rescue"]
   }
 ]
