@@ -53,3 +53,56 @@ async def get_component_types():
     
     types = await db.drone_components.distinct("component_type")
     return types
+
+@router.post("/", response_model=Component, status_code=201)
+async def create_component(component: Component):
+    db = get_db()
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database connection failed")
+    
+    comp_data = component.model_dump(exclude={"id"})
+    result = await db.drone_components.insert_one(comp_data)
+    
+    doc = await db.drone_components.find_one({"_id": result.inserted_id})
+    return Component(**mongo_doc_to_dict(doc))
+
+@router.put("/{component_id}", response_model=Component)
+async def update_component(component_id: str, component: Component):
+    db = get_db()
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database connection failed")
+    
+    try:
+        obj_id = ObjectId(component_id)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid component ID")
+        
+    comp_data = component.model_dump(exclude={"id"})
+    result = await db.drone_components.update_one(
+        {"_id": obj_id},
+        {"$set": comp_data}
+    )
+    
+    if result.matched_count == 0:
+        raise HTTPException(status_code=404, detail="Component not found")
+        
+    doc = await db.drone_components.find_one({"_id": obj_id})
+    return Component(**mongo_doc_to_dict(doc))
+
+@router.delete("/{component_id}")
+async def delete_component(component_id: str):
+    db = get_db()
+    if db is None:
+        raise HTTPException(status_code=500, detail="Database connection failed")
+    
+    try:
+        obj_id = ObjectId(component_id)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid component ID")
+        
+    result = await db.drone_components.delete_one({"_id": obj_id})
+    
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Component not found")
+        
+    return {"message": "Component deleted successfully", "id": component_id}

@@ -12,46 +12,72 @@
         .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
-<body class="text-slate-200 antialiased overflow-y-auto">
+<body class="text-slate-200 antialiased overflow-y-auto flex flex-col min-h-screen">
 
-    <nav class="glass-panel sticky top-0 z-50 px-6 py-4 flex items-center justify-between border-b border-white/5">
+    <!-- Navigation Bar -->
+    <nav class="glass-panel sticky top-0 z-50 px-6 py-4 flex items-center justify-between border-b border-white/5 shrink-0">
         <div class="flex items-center gap-3">
-            <div class="bg-blue-600 p-2 rounded-lg"><i class="fas fa-drone text-white text-xl"></i></div>
+            <div class="bg-blue-600 p-2 rounded-lg shadow-lg shadow-blue-500/20">
+                <i class="fas fa-drone text-white text-xl"></i>
+            </div>
             <h1 class="text-xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">DroneMate</h1>
         </div>
-        <div class="flex items-center gap-6">
+        
+        <div class="hidden md:flex items-center gap-8">
             <a href="index.html" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Chat</a>
-            <a href="#" class="text-sm font-medium text-white transition-colors">Components</a>
+            <a href="components.html" class="text-sm font-semibold text-white border-b-2 border-blue-500 pb-1 transition-all">Components</a>
             <a href="guides.html" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Guides</a>
         </div>
+
+        <button class="md:hidden text-slate-400 hover:text-white p-2">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
     </nav>
 
-    <main class="max-w-7xl mx-auto p-6 space-y-8">
-        <header class="flex items-end justify-between">
-            <div class="space-y-1">
-                <h2 class="text-3xl font-bold text-white">Component Database</h2>
-                <p class="text-slate-400">Browse and compare the best drone parts for your next build.</p>
+    <main class="max-w-7xl mx-auto w-full p-6 space-y-8 flex-grow">
+        <header class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div class="space-y-2">
+                <h2 class="text-4xl font-bold text-white tracking-tight">Component Database</h2>
+                <p class="text-slate-400 max-w-lg">Expertly curated directory of FPV parts with real-world specifications and community ratings.</p>
             </div>
-            <div class="flex gap-4">
-                <input id="search-input" type="text" placeholder="Search parts..." class="bg-slate-800 border-white/5 rounded-xl px-4 py-2 text-sm focus:ring-blue-600 focus:border-blue-600">
-                <select id="type-filter" class="bg-slate-800 border-white/5 rounded-xl px-4 py-2 text-sm text-slate-400">
-                    <option value="">All Types</option>
-                    <option value="motor">Motors</option>
-                    <option value="flight_controller">Flight Controllers</option>
-                    <option value="esc">ESCs</option>
-                    <option value="battery">Batteries</option>
-                    <option value="frame">Frames</option>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <div class="relative group">
+                    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-blue-500 transition-colors"></i>
+                    <input id="search-input" type="text" placeholder="Search components..." 
+                        class="bg-slate-800/50 border border-white/10 rounded-xl pl-11 pr-4 py-2.5 text-sm focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none w-full sm:w-64 transition-all">
+                </div>
+                <select id="type-filter" class="bg-slate-800/50 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-300 focus:ring-1 focus:ring-blue-500/50 outline-none transition-all cursor-pointer hover:bg-slate-700/50">
+                    <option value="">All Categories</option>
+                    <option value="motor">Brushless Motors</option>
+                    <option value="flight_controller">Stack/FCs</option>
+                    <option value="esc">Electronic Speed Controllers</option>
+                    <option value="battery">LiPo Batteries</option>
+                    <option value="frame">Carbon Frames</option>
                 </select>
             </div>
         </header>
 
         <section id="components-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Components will be loaded here -->
-            <div class="animate-pulse glass-panel rounded-3xl h-64"></div>
-            <div class="animate-pulse glass-panel rounded-3xl h-64"></div>
-            <div class="animate-pulse glass-panel rounded-3xl h-64"></div>
+            <div class="animate-pulse glass-panel rounded-3xl h-64 border border-white/5"></div>
+            <div class="animate-pulse glass-panel rounded-3xl h-64 border border-white/5"></div>
+            <div class="animate-pulse glass-panel rounded-3xl h-64 border border-white/5"></div>
         </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-white/5 px-6 py-4 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0 text-[11px] text-slate-500 font-medium">
+        <div class="flex items-center gap-4">
+            <span>&copy; 2024 DroneMate AI</span>
+            <span class="w-1 h-1 bg-slate-700 rounded-full"></span>
+            <a href="#" class="hover:text-blue-400 transition-colors">Privacy</a>
+            <a href="#" class="hover:text-blue-400 transition-colors">Terms</a>
+        </div>
+        <div class="flex items-center gap-3 text-sm">
+            <a href="#" class="hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+            <a href="#" class="hover:text-white transition-colors"><i class="fab fa-discord"></i></a>
+        </div>
+    </footer>
 
     <script src="js/api.js"></script>
     <script src="js/components.js"></script>

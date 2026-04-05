@@ -12,37 +12,60 @@
         .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
     </style>
 </head>
-<body class="text-slate-200 antialiased overflow-y-auto">
+<body class="text-slate-200 antialiased overflow-y-auto flex flex-col min-h-screen">
 
-    <nav class="glass-panel sticky top-0 z-50 px-6 py-4 flex items-center justify-between border-b border-white/5">
+    <!-- Navigation Bar -->
+    <nav class="glass-panel sticky top-0 z-50 px-6 py-4 flex items-center justify-between border-b border-white/5 shrink-0">
         <div class="flex items-center gap-3">
-            <div class="bg-blue-600 p-2 rounded-lg"><i class="fas fa-drone text-white text-xl"></i></div>
+            <div class="bg-blue-600 p-2 rounded-lg shadow-lg shadow-blue-500/20">
+                <i class="fas fa-drone text-white text-xl"></i>
+            </div>
             <h1 class="text-xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">DroneMate</h1>
         </div>
-        <div class="flex items-center gap-6">
+        
+        <div class="hidden md:flex items-center gap-8">
             <a href="index.html" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Chat</a>
             <a href="components.html" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Components</a>
-            <a href="#" class="text-sm font-medium text-white transition-colors">Guides</a>
+            <a href="guides.html" class="text-sm font-semibold text-white border-b-2 border-blue-500 pb-1 transition-all">Guides</a>
         </div>
+
+        <button class="md:hidden text-slate-400 hover:text-white p-2">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
     </nav>
 
-    <main class="max-w-4xl mx-auto p-6 space-y-12">
+    <main class="max-w-4xl mx-auto w-full p-6 space-y-12 flex-grow">
         <header class="text-center space-y-4">
-            <h2 class="text-4xl font-bold text-white tracking-tight">Build Guides</h2>
-            <p class="text-slate-400 max-w-xl mx-auto">Master the art of drone building with our curated, step-by-step masterclasses.</p>
+            <div class="inline-block bg-blue-600/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border border-blue-500/20 mb-2">Masterclasses</div>
+            <h2 class="text-5xl font-bold text-white tracking-tight">Build Guides</h2>
+            <p class="text-slate-400 max-w-xl mx-auto text-lg leading-relaxed">Master the art of drone building with our curated, step-by-step masterclasses designed for every skill level.</p>
         </header>
 
         <section id="guides-list" class="space-y-6">
             <!-- Guides list will be loaded here -->
-            <div class="animate-pulse glass-panel rounded-3xl h-32"></div>
-            <div class="animate-pulse glass-panel rounded-3xl h-32"></div>
+            <div class="animate-pulse glass-panel rounded-3xl h-32 border border-white/5"></div>
+            <div class="animate-pulse glass-panel rounded-3xl h-32 border border-white/5"></div>
         </section>
 
         <!-- Selected Guide Detail Modal/Overlay -->
-        <div id="guide-detail" class="hidden glass-panel rounded-3xl p-8 space-y-8 animate-in fade-in duration-500">
+        <div id="guide-detail" class="hidden glass-panel rounded-3xl p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 border border-white/10 shadow-2xl">
             <!-- Selected guide content will be injected here -->
         </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-white/5 px-6 py-4 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0 text-[11px] text-slate-500 font-medium">
+        <div class="flex items-center gap-4">
+            <span>&copy; 2024 DroneMate AI</span>
+            <span class="w-1 h-1 bg-slate-700 rounded-full"></span>
+            <a href="#" class="hover:text-blue-400 transition-colors">Privacy</a>
+            <a href="#" class="hover:text-blue-400 transition-colors">Terms</a>
+        </div>
+        <div class="flex items-center gap-3 text-sm">
+            <a href="#" class="hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+            <a href="#" class="hover:text-white transition-colors"><i class="fab fa-discord"></i></a>
+        </div>
+    </footer>
 
     <script src="js/api.js"></script>
     <script src="js/guides.js"></script>

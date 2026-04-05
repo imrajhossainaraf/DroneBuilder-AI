@@ -29,86 +29,129 @@
         }
     </style>
 </head>
-<body class="text-slate-200 antialiased overflow-hidden">
+<body class="text-slate-200 antialiased overflow-hidden flex flex-col h-screen">
 
     <!-- Navigation Bar -->
-    <nav class="glass-panel sticky top-0 z-50 px-6 py-4 flex items-center justify-between border-b border-white/5">
+    <nav class="glass-panel sticky top-0 z-50 px-6 py-4 flex items-center justify-between border-b border-white/5 shrink-0">
         <div class="flex items-center gap-3">
-            <div class="bg-blue-600 p-2 rounded-lg">
+            <div class="bg-blue-600 p-2 rounded-lg shadow-lg shadow-blue-500/20">
                 <i class="fas fa-drone text-white text-xl"></i>
             </div>
             <h1 class="text-xl font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent">DroneMate</h1>
         </div>
-        <div class="flex items-center gap-6">
-            <a href="#" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Chat</a>
+        
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+            <a href="index.html" class="text-sm font-semibold text-white border-b-2 border-blue-500 pb-1 transition-all">Chat</a>
             <a href="components.html" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Components</a>
             <a href="guides.html" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Guides</a>
         </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white p-2">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
     </nav>
 
-    <main class="max-w-6xl mx-auto grid grid-cols-12 gap-6 p-6 h-full">
-        <!-- Left Sidebar: Recent Conversations / Suggested Questions -->
-        <aside class="col-span-3 flex flex-col gap-6">
-            <div class="glass-panel rounded-2xl p-5">
-                <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">Suggested Questions</h2>
-                <div id="suggested-questions" class="flex flex-col gap-2">
+    <main class="max-w-7xl mx-auto w-full grid grid-cols-12 gap-6 p-6 flex-grow overflow-hidden">
+        <!-- Left Sidebar -->
+        <aside id="sidebar" class="hidden md:flex col-span-12 md:col-span-3 flex-col gap-6 overflow-y-auto">
+            <div class="glass-panel rounded-2xl p-5 border border-white/5">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">Suggestions</h2>
+                    <i class="fas fa-lightbulb text-blue-500/50 text-xs"></i>
+                </div>
+                <div id="suggested-questions" class="flex flex-col gap-2.5">
                     <!-- Suggestions will be injected here -->
                 </div>
             </div>
-            <div class="glass-panel rounded-2xl p-5 flex-grow overflow-y-auto">
-                <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">Recent Conversations</h2>
-                <div id="conversation-history" class="space-y-3">
-                    <!-- History will be injected here -->
+            
+            <div class="glass-panel rounded-2xl p-5 flex-grow overflow-hidden flex flex-col border border-white/5">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-slate-500">History</h2>
+                    <button id="clear-chat-btn" title="Clear conversation" class="text-[10px] text-slate-500 hover:text-red-400 transition-colors uppercase font-bold tracking-tighter">
+                        <i class="fas fa-trash-alt mr-1"></i> Clear
+                    </button>
+                </div>
+                <div id="conversation-history" class="space-y-3 overflow-y-auto flex-grow pr-1 custom-scrollbar">
                     <div class="text-sm text-slate-500 italic">No recent chats yet.</div>
                 </div>
             </div>
         </aside>
 
         <!-- Main Chat Area -->
-        <section class="col-span-9 flex flex-col gap-4">
-            <div id="chat-messages" class="chat-container glass-panel rounded-3xl p-6 overflow-y-auto flex flex-col gap-6">
+        <section class="col-span-12 md:col-span-9 flex flex-col gap-4 overflow-hidden h-full">
+            <div id="chat-messages" class="flex-grow glass-panel rounded-3xl p-6 overflow-y-auto flex flex-col gap-6 border border-white/5 shadow-inner">
                 <!-- Welcome Message -->
                 <div class="flex gap-4">
-                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0">
-                        <i class="fas fa-robot text-xs text-white"></i>
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/20">
+                        <i class="fas fa-robot text-sm text-white"></i>
                     </div>
                     <div class="space-y-2 max-w-[85%]">
-                        <div class="text-sm font-medium text-slate-400">DroneMate</div>
-                        <div class="bg-slate-800/50 p-4 rounded-2xl rounded-tl-none border border-white/5">
-                            <p class="leading-relaxed">Hello! I'm DroneMate, your AI drone assistant. Whether you're building your first 5-inch racer or troubleshooting an arming issue, I'm here to help. What's on your mind?</p>
+                        <div class="text-xs font-bold text-blue-400 uppercase tracking-widest">DroneMate Assistant</div>
+                        <div class="bg-slate-800/40 backdrop-blur-md p-5 rounded-2xl rounded-tl-none border border-white/10 shadow-sm">
+                            <p class="leading-relaxed text-slate-200">Hello! I'm **DroneMate**, your intelligent FPV companion. 🚁<br><br>I can help you pick the perfect motors, troubleshoot Betaflight issues, or guide you through your first build. What are we working on today?</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Input Bar -->
-            <div class="glass-panel rounded-2xl p-3 flex flex-col sm:flex-row sm:items-center gap-3 border border-white/10 shadow-2xl">
-                <div class="flex flex-wrap items-center gap-2 shrink-0 px-1 order-2 sm:order-1">
-                    <label for="ai-provider-select" class="text-[10px] font-semibold uppercase tracking-wider text-slate-500 whitespace-nowrap">AI</label>
-                    <select id="ai-provider-select" title="Where to get the answer"
-                        class="bg-slate-800/90 text-slate-200 text-xs sm:text-sm rounded-lg border border-white/10 px-2 py-2 min-w-0 max-w-[11rem] sm:max-w-none focus:outline-none focus:ring-1 focus:ring-blue-500/50">
-                        <option value="auto">Auto (fastest)</option>
-                        <option value="ollama">Ollama (local)</option>
-                        <option value="openai">OpenAI</option>
-                        <option value="groq">Groq</option>
-                        <option value="openrouter">OpenRouter</option>
-                        <option value="gemini">Gemini</option>
-                    </select>
-                    <label for="response-detail-select" class="text-[10px] font-semibold uppercase tracking-wider text-slate-500 whitespace-nowrap">Answer</label>
-                    <select id="response-detail-select" title="Response length"
-                        class="bg-slate-800/90 text-slate-200 text-xs sm:text-sm rounded-lg border border-white/10 px-2 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500/50">
-                        <option value="standard">Standard</option>
-                        <option value="detailed">Detailed</option>
-                    </select>
+            <div class="glass-panel rounded-2xl p-3 flex flex-col gap-3 border border-white/10 shadow-2xl relative">
+                <div class="flex flex-wrap items-center gap-3 shrink-0 px-2">
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Engine</span>
+                        <select id="ai-provider-select" title="AI Model"
+                            class="bg-slate-800/80 text-slate-300 text-xs rounded-lg border border-white/5 px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-blue-500/50 hover:bg-slate-700/80 transition-colors">
+                            <option value="auto">Auto-Detect</option>
+                            <option value="ollama">Ollama (Local)</option>
+                            <option value="openai">OpenAI</option>
+                            <option value="groq">Groq</option>
+                            <option value="openrouter">OpenRouter</option>
+                            <option value="gemini">Gemini</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center gap-2 border-l border-white/10 pl-3">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Mode</span>
+                        <select id="response-detail-select" title="Detail level"
+                            class="bg-slate-800/80 text-slate-300 text-xs rounded-lg border border-white/5 px-3 py-1.5 focus:outline-none focus:ring-1 focus:ring-blue-500/50 hover:bg-slate-700/80 transition-colors">
+                            <option value="standard">Standard</option>
+                            <option value="detailed">Technical</option>
+                        </select>
+                    </div>
                 </div>
-                <input type="text" id="chat-input" placeholder="Type your question about drone building, troubleshooting..."
-                    class="flex-grow min-w-0 bg-transparent border-none focus:ring-0 text-slate-200 placeholder-slate-500 px-4 py-2 order-1 sm:order-2">
-                <button id="send-btn" class="bg-blue-600 hover:bg-blue-500 text-white w-10 h-10 rounded-xl flex items-center justify-center transition-all shadow-lg active:scale-95 shrink-0 order-3 self-end sm:self-auto">
-                    <i class="fas fa-paper-plane text-sm"></i>
-                </button>
+                
+                <div class="flex items-center gap-2 bg-slate-900/40 rounded-xl px-2 border border-white/5 focus-within:border-blue-500/50 transition-all">
+                    <input type="text" id="chat-input" autocomplete="off" placeholder="Ask about parts, builds, or issues..."
+                        class="flex-grow bg-transparent border-none focus:ring-0 text-slate-100 placeholder-slate-500 py-3 px-2 text-sm md:text-base">
+                    <button id="send-btn" class="bg-blue-600 hover:bg-blue-500 text-white w-10 h-10 rounded-xl flex items-center justify-center transition-all shadow-lg shadow-blue-600/20 active:scale-95 group">
+                        <i class="fas fa-paper-plane text-sm group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+                    </button>
+                </div>
             </div>
         </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-white/5 px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0 text-[11px] text-slate-500 font-medium">
+        <div class="flex items-center gap-4">
+            <span>&copy; 2024 DroneMate AI</span>
+            <span class="w-1 h-1 bg-slate-700 rounded-full"></span>
+            <a href="#" class="hover:text-blue-400 transition-colors">Privacy</a>
+            <a href="#" class="hover:text-blue-400 transition-colors">Terms</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <span class="flex items-center gap-1.5">
+                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-sm shadow-emerald-500/50"></span>
+                System Operational
+            </span>
+            <span class="w-1 h-1 bg-slate-700 rounded-full"></span>
+            <div class="flex items-center gap-3 text-sm">
+                <a href="#" class="hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
 
     <!-- Global Scripts -->
     <script src="js/api.js"></script>

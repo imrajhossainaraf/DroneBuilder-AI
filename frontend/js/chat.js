@@ -151,27 +151,27 @@ function addMessageToUI(sender, content, isLoading = false, source = null, compo
     messageDiv.style.animation = "fadeSlideIn 0.3s ease-out";
 
     const isUser = sender === "user";
-    const avatarColor = isUser ? "bg-slate-700" : "bg-blue-600";
+    const avatarGradient = isUser ? "from-slate-700 to-slate-800" : "from-blue-600 to-blue-700";
     const icon = isUser ? "fa-user" : "fa-robot";
-    const label = isUser ? "You" : "DroneMate";
+    const label = isUser ? "You" : "DroneMate Assistant";
 
     // Source badge
     let sourceBadge = "";
     if (source && !isUser) {
         const badgeColors = {
-            "database_enhanced": "bg-emerald-900/50 text-emerald-400 border-emerald-700/30",
-            "database": "bg-blue-900/50 text-blue-400 border-blue-700/30",
-            "ai": "bg-purple-900/50 text-purple-400 border-purple-700/30",
-            "error": "bg-red-900/50 text-red-400 border-red-700/30",
+            "database_enhanced": "bg-emerald-900/40 text-emerald-400 border-emerald-500/20",
+            "database": "bg-blue-900/40 text-blue-400 border-blue-500/20",
+            "ai": "bg-purple-900/40 text-purple-400 border-purple-500/20",
+            "error": "bg-red-900/40 text-red-400 border-red-500/20",
         };
         const colors = badgeColors[source] || badgeColors["ai"];
         const labels = {
-            "database_enhanced": "DB + AI",
-            "database": "Database",
-            "ai": "AI Generated",
+            "database_enhanced": "Engine: Hybrid",
+            "database": "Engine: Database",
+            "ai": "Engine: LLM",
             "error": "Error",
         };
-        sourceBadge = `<span class="text-[10px] uppercase px-2 py-0.5 rounded-full border ${colors}">${labels[source] || source}</span>`;
+        sourceBadge = `<span class="text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border ${colors}">${labels[source] || source}</span>`;
     }
 
     // Content rendering
@@ -179,32 +179,32 @@ function addMessageToUI(sender, content, isLoading = false, source = null, compo
     if (isLoading) {
         renderedContent = `
             <div class="flex items-center gap-2 text-slate-400">
-                <div class="flex gap-1">
-                    <span class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 0s"></span>
-                    <span class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 0.15s"></span>
-                    <span class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></span>
+                <div class="flex gap-1.5">
+                    <span class="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0s"></span>
+                    <span class="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0.1s"></span>
+                    <span class="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
                 </div>
-                <span class="text-sm">Thinking...</span>
+                <span class="text-xs font-medium uppercase tracking-widest ml-2">Calculating...</span>
             </div>`;
     } else if (isUser) {
-        renderedContent = `<p class="leading-relaxed">${content}</p>`;
+        renderedContent = `<p class="leading-relaxed text-slate-200">${content}</p>`;
     } else {
-        renderedContent = `<div class="leading-relaxed prose-sm">${renderMarkdown(content)}</div>`;
+        renderedContent = `<div class="leading-relaxed prose-sm text-slate-200">${renderMarkdown(content)}</div>`;
         if (components && components.length > 0) {
             renderedContent += renderComponentCards(components);
         }
     }
 
     messageDiv.innerHTML = `
-        <div class="w-8 h-8 rounded-full ${avatarColor} flex items-center justify-center flex-shrink-0 mt-1">
-            <i class="fas ${icon} text-xs text-white"></i>
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br ${avatarGradient} flex items-center justify-center flex-shrink-0 mt-1 shadow-lg shadow-black/20">
+            <i class="fas ${icon} text-sm text-white"></i>
         </div>
-        <div class="space-y-1.5 max-w-[85%] min-w-0">
-            <div class="flex items-center gap-2">
-                <span class="text-sm font-medium text-slate-400">${label}</span>
+        <div class="space-y-2 max-w-[85%] min-w-0">
+            <div class="flex items-center gap-3">
+                <span class="text-xs font-bold ${isUser ? 'text-slate-400' : 'text-blue-400'} uppercase tracking-widest">${label}</span>
                 ${sourceBadge}
             </div>
-            <div class="bg-slate-800/50 p-4 rounded-2xl ${isUser ? 'rounded-tr-none' : 'rounded-tl-none'} border border-white/5">
+            <div class="bg-slate-800/40 backdrop-blur-md p-5 rounded-2xl ${isUser ? 'rounded-tr-none' : 'rounded-tl-none'} border border-white/5 shadow-sm">
                 ${renderedContent}
             </div>
         </div>
@@ -245,10 +245,53 @@ chatInput.addEventListener("keydown", (e) => {
     }
 });
 
+const clearChatBtn = document.getElementById("clear-chat-btn");
+const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+const sidebar = document.getElementById("sidebar");
+
+function setupUIInteractions() {
+    // Mobile Sidebar Toggle
+    if (mobileMenuBtn && sidebar) {
+        mobileMenuBtn.onclick = () => {
+            sidebar.classList.toggle("hidden");
+            sidebar.classList.toggle("flex");
+            sidebar.classList.toggle("absolute");
+            sidebar.classList.toggle("inset-0");
+            sidebar.classList.toggle("z-[60]");
+            sidebar.classList.toggle("bg-slate-900/95");
+            sidebar.classList.toggle("p-6");
+        };
+    }
+
+    // Clear Chat
+    if (clearChatBtn) {
+        clearChatBtn.onclick = () => {
+            if (confirm("Are you sure you want to clear this conversation?")) {
+                chatContainer.innerHTML = `
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/20">
+                            <i class="fas fa-robot text-sm text-white"></i>
+                        </div>
+                        <div class="space-y-2 max-w-[85%]">
+                            <div class="text-xs font-bold text-blue-400 uppercase tracking-widest">DroneMate Assistant</div>
+                            <div class="bg-slate-800/40 backdrop-blur-md p-5 rounded-2xl rounded-tl-none border border-white/10 shadow-sm">
+                                <p class="leading-relaxed text-slate-200">Conversation cleared. How else can I help you today?</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                currentSessionId = null;
+                localStorage.removeItem("droneMate_sessionId");
+            }
+        };
+    }
+}
+
 // ─── Init ───────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
     loadChatPreferences();
     refreshProviderAvailability();
+    setupUIInteractions();
 
     aiProviderSelect?.addEventListener("change", () => {
         localStorage.setItem(LS_AI_PROVIDER, aiProviderSelect.value);
