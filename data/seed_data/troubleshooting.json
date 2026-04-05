@@ -1,0 +1,71 @@
+[
+  {
+    "problem": "Drone won't arm",
+    "symptoms": ["Beeping pattern", "LED flashing red", "No motor response"],
+    "possible_causes": [
+      {"cause": "Accelerometer not calibrated", "solution": "Calibrate accelerometer in Betaflight Setup tab", "probability": "high", "difficulty": "easy"},
+      {"cause": "Radio not bound or no signal", "solution": "Bind receiver to transmitter, check Receiver tab in Betaflight", "probability": "high", "difficulty": "easy"},
+      {"cause": "Arm switch not configured", "solution": "Set up an Arm mode in Betaflight Modes tab with a switch", "probability": "medium", "difficulty": "easy"},
+      {"cause": "Throttle not at minimum", "solution": "Push throttle stick all the way down before arming", "probability": "medium", "difficulty": "easy"}
+    ],
+    "diagnostic_steps": [
+      "Open Betaflight CLI and type 'status' — it shows exactly why arm is blocked",
+      "Check Receiver tab — move sticks and verify channel inputs respond",
+      "Check accelerometer calibration in Setup tab"
+    ],
+    "category": "arming_issues",
+    "severity": "critical",
+    "keywords": ["arm", "won't arm", "arming", "beep", "not arming"]
+  },
+  {
+    "problem": "Drone flips on takeoff",
+    "symptoms": ["Immediate flip after throttle up", "Rolls to one side on liftoff"],
+    "possible_causes": [
+      {"cause": "Wrong motor direction", "solution": "Verify motor spin directions in Betaflight Motors tab — standard X: FL=CCW, FR=CW, RL=CW, RR=CCW", "probability": "high", "difficulty": "easy"},
+      {"cause": "Wrong prop on wrong motor", "solution": "CW props on CW motors, CCW props on CCW motors — check markings on props", "probability": "high", "difficulty": "easy"},
+      {"cause": "FC orientation wrong", "solution": "Set correct yaw offset in Betaflight Configuration tab", "probability": "medium", "difficulty": "easy"}
+    ],
+    "diagnostic_steps": [
+      "Remove props, spin motors in Betaflight — verify spin direction matches layout",
+      "Check prop markings match motor spin direction",
+      "Verify FC is facing forward in Betaflight (horizon should tilt correctly)"
+    ],
+    "category": "takeoff_issues",
+    "severity": "critical",
+    "keywords": ["flip", "takeoff", "roll", "spin", "crash", "flips"]
+  },
+  {
+    "problem": "ESC beeping continuously",
+    "symptoms": ["Constant beeping after battery connect", "Rhythmic beep pattern"],
+    "possible_causes": [
+      {"cause": "No throttle signal from FC", "solution": "Check ESC signal wire connection to FC, verify ESC protocol in Betaflight", "probability": "high", "difficulty": "medium"},
+      {"cause": "Battery voltage too low", "solution": "Charge or replace the battery", "probability": "medium", "difficulty": "easy"},
+      {"cause": "ESC needs calibration", "solution": "Run ESC calibration: set throttle to max, connect battery, wait for beeps, lower throttle", "probability": "medium", "difficulty": "medium"}
+    ],
+    "diagnostic_steps": [
+      "Count the beep pattern — each ESC brand has specific codes",
+      "Check battery voltage with multimeter",
+      "Verify signal wire connections between ESC and FC"
+    ],
+    "category": "esc_issues",
+    "severity": "high",
+    "keywords": ["esc", "beep", "beeping", "sound", "noise"]
+  },
+  {
+    "problem": "FPV video has static or interference",
+    "symptoms": ["Grainy video", "Rolling static lines", "Complete video loss"],
+    "possible_causes": [
+      {"cause": "VTX and goggles on different channels", "solution": "Match VTX and goggle channel/band exactly (e.g., Raceband CH3)", "probability": "high", "difficulty": "easy"},
+      {"cause": "VTX antenna loose or broken", "solution": "Check antenna connector, replace if damaged", "probability": "high", "difficulty": "easy"},
+      {"cause": "Electrical interference from motors/ESCs", "solution": "Add capacitor to VTX power, route VTX wires away from motor wires", "probability": "medium", "difficulty": "medium"}
+    ],
+    "diagnostic_steps": [
+      "Verify goggles are on exact same band and channel as VTX",
+      "Inspect antenna connector for damage",
+      "Test at very close range — if clean up close, it's a signal/power issue at range"
+    ],
+    "category": "fpv_issues",
+    "severity": "medium",
+    "keywords": ["fpv", "video", "static", "interference", "goggles", "vtx", "signal"]
+  }
+]

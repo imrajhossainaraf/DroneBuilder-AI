@@ -1,0 +1,250 @@
+[
+  {
+    "category": "motors",
+    "question": "What does KV rating mean for drone motors?",
+    "answer": "KV rating indicates how many RPM (revolutions per minute) the motor will spin per volt applied with no load. For example, a 2400KV motor on a 4S battery (16.8V) will spin at approximately 40,320 RPM (2400 × 16.8). Lower KV = more torque, better for larger props. Higher KV = more speed, better for smaller props.",
+    "keywords": ["kv", "motor", "rpm", "voltage", "rating"],
+    "tags": ["beginner", "motors", "theory"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "motors",
+    "question": "What motor should I use for a 5-inch racing drone?",
+    "answer": "For 5-inch racing drones, use 2207 or 2306 motors with 2400-2600KV on 4S, or 1700-1900KV on 6S. Popular choices include the EMAX RS2207, T-Motor F40, and iFlight Xing 2207. These motors provide the best power-to-weight ratio for racing and freestyle. Pair with 45A+ ESCs.",
+    "keywords": ["motor", "5-inch", "racing", "2207", "kv"],
+    "tags": ["beginner", "parts", "racing"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "motors",
+    "question": "What is the difference between 2204, 2205, 2207, and 2306 motor sizes?",
+    "answer": "Motor size numbers indicate stator dimensions: first two digits = stator diameter (mm), last two = stator height (mm). 2204: small, lightweight, good for 3-4\" frames. 2205: stepping stone to 5\". 2207: most popular for 5\" — balances power and weight. 2306: wide stator, high torque, excellent for freestyle on 5-6\" frames.",
+    "keywords": ["motor", "size", "stator", "2207", "2306", "2204"],
+    "tags": ["beginner", "motors"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "motors",
+    "question": "How do I reverse motor direction on a drone?",
+    "answer": "You can reverse motor direction in two ways: (1) In Betaflight Configurator under the Motors tab, use BLHeli passthrough to access BLHeli Suite/Configurator and set direction per motor. (2) Swap any two of the three motor wires to reverse electrically. For DSHOT-capable ESCs with bidirectional DSHOT, you can also reverse in Betaflight directly. Standard quadcopter layout requires motors 1 & 4 spinning CW and motors 2 & 3 spinning CCW.",
+    "keywords": ["motor", "direction", "reverse", "betaflight", "blheli"],
+    "tags": ["intermediate", "motors", "setup"],
+    "difficulty": "intermediate"
+  },
+  {
+    "category": "motors",
+    "question": "Why is my motor getting very hot during flight?",
+    "answer": "Motor overheating has several causes: (1) Props are too large for the KV rating — try smaller props. (2) Flying too aggressively with an underpowered motor. (3) Motor bearings failing — listen for grinding sounds. (4) Coil short or damaged windings — check resistance between motor wires. (5) ESC misconfiguration — verify PWM frequency and timing. Temperatures above 70°C are concerning. Motors should be warm but not painfully hot to touch after a 3-minute flight.",
+    "keywords": ["motor", "hot", "overheating", "temperature", "heat"],
+    "tags": ["troubleshooting", "motors"],
+    "difficulty": "intermediate"
+  },
+  {
+    "category": "batteries",
+    "question": "What is the difference between 4S and 6S LiPo batteries?",
+    "answer": "4S LiPo has 4 cells (14.8V nominal, 16.8V fully charged). 6S LiPo has 6 cells (22.2V nominal, 25.2V fully charged). 6S provides ~50% more voltage, meaning more power with the same motor. Use lower KV motors with 6S (e.g., 1700-1900KV for 5-inch). 6S gives longer flight times, smoother power delivery, and less current draw. However, 6S batteries are heavier and more expensive. Most modern racing setups are moving toward 6S.",
+    "keywords": ["battery", "4s", "6s", "lipo", "voltage", "cells"],
+    "tags": ["beginner", "batteries"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "batteries",
+    "question": "What C rating do I need for my drone battery?",
+    "answer": "C rating determines how much current the battery can safely discharge continuously. Formula: Max current (A) = Capacity (Ah) × C rating. Example: 1500mAh (1.5Ah) × 75C = 112.5A. For typical 5-inch quad drawing 80-100A peak, use at least 75C on a 1500mAh battery or 50C on a 2200mAh. Higher C ratings are better — never go below the expected peak current draw. Brands inflate ratings; real-world performance is usually 70% of stated C rating.",
+    "keywords": ["battery", "c rating", "discharge", "current", "capacity"],
+    "tags": ["beginner", "batteries", "theory"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "batteries",
+    "question": "How do I properly store LiPo batteries?",
+    "answer": "Store LiPo batteries at storage voltage: 3.8V per cell (3.7-3.85V range). For 4S that's ~15.2V total. Use your charger's 'Storage Charge' mode. Store in a fireproof LiPo bag or metal container away from flammable materials. Ideal temperature: 40-70°F (5-21°C), avoid freezing or extreme heat. Never store fully charged or fully discharged — both degrade battery life. Inspect for puffing before each flight; a puffy battery should be safely discharged and disposed.",
+    "keywords": ["battery", "storage", "lipo", "voltage", "3.8v", "storage charge"],
+    "tags": ["beginner", "safety", "batteries"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "batteries",
+    "question": "Why is my battery puffing or swelling?",
+    "answer": "Battery puffing (swelling) indicates gas buildup inside the cells from chemical breakdown. Causes: (1) Over-discharging below 3.3V per cell. (2) Over-charging above 4.2V per cell. (3) Too high a discharge rate for the battery's C rating. (4) Physical damage. (5) End of battery life (after 100-200 cycles). A puffy battery is dangerous — it should NOT be used or charged. Safely discharge it completely, puncture in a safe outdoor area (risk of fire), and dispose at a battery recycling center.",
+    "keywords": ["battery", "puffing", "swelling", "lipo", "damaged"],
+    "tags": ["safety", "troubleshooting", "batteries"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "batteries",
+    "question": "What is the best mAh capacity for a 5-inch freestyle drone?",
+    "answer": "For 5-inch freestyle on 4S, use 1300-1500mAh batteries for the best balance of flight time and weight. On 6S, 1100-1300mAh is optimal. Larger batteries (2200mAh+) improve flight time but increase weight and reduce maneuverability. Most pilots prefer 3-4 minute aggressive freestyle flights with 1300mAh 4S or 1100mAh 6S. For cinematic smooth flying, go up to 2000mAh for longer flights.",
+    "keywords": ["battery", "mah", "capacity", "freestyle", "5-inch", "flight time"],
+    "tags": ["intermediate", "batteries", "freestyle"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "flight_controllers",
+    "question": "What is a flight controller and what does it do?",
+    "answer": "A flight controller (FC) is the brain of a drone. It's a circuit board with a microprocessor, gyroscope, and accelerometer that: (1) Reads radio input from the receiver. (2) Reads sensor data (gyro, accelerometer, barometer, GPS if present). (3) Runs the PID control loop to keep the drone stable. (4) Outputs motor speed signals to ESCs. (5) Connects to peripherals like GPS, OSD, VTX, and telemetry. Popular FCs include Betaflight F4/F7, SpeedyBee F405, and Matek F722.",
+    "keywords": ["flight controller", "FC", "betaflight", "gyroscope", "PID"],
+    "tags": ["beginner", "flight_controllers", "theory"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "flight_controllers",
+    "question": "What is the difference between F4 and F7 flight controllers?",
+    "answer": "F4 and F7 refer to the STM32 processor chip generation. F4 (e.g., STM32F405): 168MHz, sufficient for most builds, 6 available UART ports, handles Betaflight well. F7 (e.g., STM32F7xx): 216MHz, faster processing, more UARTs (8+), natively supports DSHOT inverted signal, better for complex builds with GPS, telemetry, and HD video systems. For simple racing/freestyle builds, F4 is fine. For GPS rescue, blackbox, HD system, and multiple peripherals, F7 or F4 are both great but F7 has more headroom.",
+    "keywords": ["flight controller", "F4", "F7", "STM32", "UART", "processor"],
+    "tags": ["intermediate", "flight_controllers"],
+    "difficulty": "intermediate"
+  },
+  {
+    "category": "flight_controllers",
+    "question": "How do I flash Betaflight firmware?",
+    "answer": "Flashing Betaflight: (1) Download Betaflight Configurator from GitHub. (2) Connect FC to PC via USB. (3) Put FC in bootloader mode: press BOOTSEL button while connecting, or use CLI command 'bl'. (4) In Configurator, click 'Firmware Flasher'. (5) Select your FC target (check FC manufacturer's documentation). (6) Select firmware version (latest stable recommended). (7) Check 'Full chip erase' for clean install. (8) Click 'Load Firmware [Online]' then 'Flash Firmware'. (9) Wait for completion, then reconnect and reconfigure.",
+    "keywords": ["betaflight", "firmware", "flash", "configurator", "bootloader"],
+    "tags": ["intermediate", "setup", "flight_controllers"],
+    "difficulty": "intermediate"
+  },
+  {
+    "category": "flight_controllers",
+    "question": "What is PID tuning and how do I start?",
+    "answer": "PID (Proportional, Integral, Derivative) tuning controls how your drone responds to inputs and disturbances. P: correction proportional to error - too high causes oscillation, too low causes drift. I: corrects accumulated error - too high causes wobbles, too low causes prop wash issues. D: dampens P response - too high causes motor heat, too low allows bouncy response. Start with Betaflight defaults. Fly and observe: if oscillations on fast rolls, reduce P. If propwash after flips, reduce D. Use Betaflight blackbox logging and Blackbox Explorer to analyze performance. RPM filter is highly recommended to simplify tuning.",
+    "keywords": ["PID", "tuning", "betaflight", "proportional", "integral", "derivative", "oscillation"],
+    "tags": ["advanced", "tuning", "flight_controllers"],
+    "difficulty": "advanced"
+  },
+  {
+    "category": "troubleshooting",
+    "question": "My drone won't arm. What should I check?",
+    "answer": "Troubleshoot arming issues step by step: (1) Check Betaflight CLI for 'status' command — it shows reasons preventing arm. (2) Verify accelerometer is calibrated (Setup tab in Configurator). (3) Ensure receiver is bound and showing input in Betaflight Receiver tab. (4) Check stick positions: throttle must be at minimum, arm switch in correct position. (5) Verify 'Arm' mode is configured in Modes tab with a switch. (6) Check for hardware health flags: gyro, accelerometer errors. (7) Ensure battery is plugged in and voltage is above minimum. (8) Disable 'ANGLE mode required to arm' if using Acro mode.",
+    "keywords": ["arm", "arming", "won't arm", "betaflight", "status", "troubleshooting"],
+    "tags": ["troubleshooting", "beginner"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "troubleshooting",
+    "question": "My drone flips immediately on takeoff. What is wrong?",
+    "answer": "Immediate flip/flip-on-arm is usually a motor direction or prop issue: (1) Check motor direction — verify all motors spin in correct direction in Betaflight Motors tab (manually spin each). Standard quadcopter: front-left CCW, front-right CW, rear-left CW, rear-right CCW (Betaflight X layout). (2) Check props — ensure correct prop is on each motor (CW props on CW motors, CCW on CCW). (3) Verify motor order in Betaflight matches your physical layout. (4) Check for a seized/stiff motor bearing. (5) Verify FC orientation (yaw offset) in Betaflight Configuration tab.",
+    "keywords": ["flip", "takeoff", "motor direction", "props", "crash", "troubleshooting"],
+    "tags": ["troubleshooting", "beginner"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "troubleshooting",
+    "question": "I have video interference / jello effect in my FPV feed. How do I fix it?",
+    "answer": "Jello (video wobble) in FPV feed: (1) Check camera mounting — ensure camera is secure and vibration-dampened with rubber grommets. (2) Check props for damage or imbalance — replace or balance props. (3) Check motor bearings — spin motors by hand, any grinding suggests bad bearings. (4) Check frame screws — all must be tight. (5) Balance your motors using a prop balancer or tape weights on heavy parts. (6) Soft-mount your FC if not already (rubber standoffs absorb vibration). (7) Check if issue is in recorded video or only on-screen goggles — if only goggles, may be VTX interference.",
+    "keywords": ["jello", "video", "interference", "fpv", "vibration", "camera"],
+    "tags": ["troubleshooting", "fpv"],
+    "difficulty": "intermediate"
+  },
+  {
+    "category": "troubleshooting",
+    "question": "My ESC is beeping continuously. What does it mean?",
+    "answer": "ESC beep codes indicate different states: Long beep + short beeps on startup = cell count detected (e.g., 4 beeps = 4S). Continuous beeping after arm: (1) No throttle signal — check receiver and FC connection. (2) Calibration needed — run ESC calibration. (3) Voltage too low — charge battery. (4) Overtemperature protection triggered — let cool down. Rapid beeping during flight: signal loss or brownout. Three beeps on startup = normal tone (ready). BLHeli ESCs: check BLHeli Suite for error codes stored in memory. Check BLHeli manual for your specific ESC beep patterns.",
+    "keywords": ["esc", "beeping", "beep code", "troubleshooting", "calibration"],
+    "tags": ["troubleshooting", "beginner"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "troubleshooting",
+    "question": "My drone oscillates or wobbles in the air. How do I fix it?",
+    "answer": "Oscillations indicate a PID tuning issue most often: HIGH frequency oscillations (fast buzz): P gains too high — reduce P on roll, pitch. LOW frequency oscillations (lazy wobble): I gains too low, or I needs increasing. Propwash after flips: D gains too low or filtering issues. Also check: (1) Props are tight and undamaged. (2) Motors are cool — no overheating. (3) Try RPM filter in Betaflight (requires bidirectional DSHOT). (4) Enable and tune D-Min in Betaflight. (5) Check motor screws are tight. Use Blackbox logging to capture oscillation and analyze frequency.",
+    "keywords": ["oscillation", "wobble", "PID", "vibration", "unstable", "tuning"],
+    "tags": ["troubleshooting", "intermediate", "tuning"],
+    "difficulty": "intermediate"
+  },
+  {
+    "category": "troubleshooting",
+    "question": "My FPV video feed has a lot of static or interference. How do I fix it?",
+    "answer": "FPV static/interference: (1) VTX and receiver on same channel/band — ensure your goggles/DVR are tuned to exact VTX channel. (2) VTX antenna orientation — antenna should be vertical, not coiled next to carbon. (3) Power supply — add capacitor to VTX power input to filter noise. (4) ESC/motor interference — separate VTX power wire from motor wires, twist power wires. (5) Other VTX flying nearby on same band. (6) Check antenna connector is not loose. (7) Increase VTX power (legal limits apply in your region). (8) Try different VTX bands (Raceband typically has less interference).",
+    "keywords": ["fpv", "static", "interference", "video", "vtx", "antenna"],
+    "tags": ["troubleshooting", "fpv"],
+    "difficulty": "intermediate"
+  },
+  {
+    "category": "building",
+    "question": "What tools do I need to build a drone?",
+    "answer": "Essential tools: (1) Soldering iron (60W+ with temperature control, 350°C for LiPo work). (2) Solder (60/40 rosin-core, or lead-free). (3) Hex/Allen driver set (1.5mm, 2mm, 2.5mm most used). (4) Threadlocker (blue Loctite on frame screws). (5) Wire cutters and strippers. (6) Heat shrink tubing and lighter/heat gun. (7) Multimeter for continuity testing. Recommended additions: Flux for soldering, Blu Tack for holding wires, helping hands/third hand tool, Isopropyl alcohol for cleaning solder joints, motor flex remover standoffs.",
+    "keywords": ["tools", "soldering", "build", "hex driver", "multimeter"],
+    "tags": ["beginner", "building", "tools"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "building",
+    "question": "How do I solder XT60 connectors to my battery?",
+    "answer": "Soldering XT60 connectors: (1) Tin the connector terminals first — apply solder inside each cup. (2) Tin your battery wires — remove 8-10mm insulation, twist tightly, coat with solder. (3) Insert wire into connector cup and apply iron from the side for 2-3 seconds until solder flows together. (4) Hold still until cooled (don't blow on it). (5) Apply heat shrink over each terminal. (6) CRITICAL: Double-check polarity before connecting — red/positive (+) to positive terminal, black/negative (-) to negative. Use correct XT60 gender — battery gets female (XT60-F), speed controller gets male (XT60-M).",
+    "keywords": ["xt60", "solder", "connector", "battery", "wiring"],
+    "tags": ["beginner", "building", "soldering"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "building",
+    "question": "What is the recommended build order for a 5-inch racing drone?",
+    "answer": "Recommended build order: (1) Test all components on the bench before installing. (2) Prepare the frame — remove protective film, check for cracks. (3) Install standoffs and prepare FC stack mounting. (4) Solder ESC power wires, add capacitor. (5) Mount ESC to frame. (6) Solder FC to ESC signal wires (or stack). (7) Solder receiver to FC. (8) Install motors and solder motor wires to ESC. (9) Configure FC/ESC in Betaflight before final assembly. (10) Mount FC stack. (11) Install camera and VTX. (12) Cable management (zip ties, sticky mounts). (13) Mount props last after all testing. Always smoke-test with a smoke stopper before first power-on.",
+    "keywords": ["build order", "5-inch", "frame", "ESC", "FC", "soldering"],
+    "tags": ["beginner", "building"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "building",
+    "question": "What is a smoke stopper and why should I use one?",
+    "answer": "A smoke stopper is a device (often a light bulb or resistor in series with the power wire) placed between the battery and the drone during first power-on. If there's a short circuit, the light bulb lights up (indicating a short) instead of blowing your ESC, FC, or battery. You can buy commercial smoke stoppers (XT60 in-line fuse boards) or make one with a 12V car light bulb and XT60 connectors. ALWAYS use a smoke stopper on first power-on of a new build. This single step can save $50-200 in components. After verifying no shorts and everything works, you can power normally.",
+    "keywords": ["smoke stopper", "short circuit", "first power-on", "safety", "fuse"],
+    "tags": ["beginner", "safety", "building"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "building",
+    "question": "How do I choose the right frame for my drone?",
+    "answer": "Frame selection depends on use case: Racing: low, stretched X or true X frames, rigid carbon fiber, minimal weight (e.g., ImpulseRC Apex, Armattan Rooster). Freestyle: 5-inch, true X design, 3-5mm arms, durable construction (e.g., TrueX, Armattan Chameleon). Long Range: efficiency-focused, high stance for battery clearance, fits GoPro (e.g., TBS Source X). Considerations: Arm thickness (4-5mm for durability), top-plate access (battery strap placement), camera angle availability, motor mount pattern (M1.5 or M2), stack mounting (20x20mm or 30x30mm), arm replacement availability.",
+    "keywords": ["frame", "carbon fiber", "racing", "freestyle", "size", "selection"],
+    "tags": ["beginner", "building", "frame"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "fpv_systems",
+    "question": "What is the difference between analog and digital FPV systems?",
+    "answer": "Analog FPV: Low latency (<20ms), widely compatible goggles and cameras, cheaper ($30-100 for camera+VTX), image quality limited (480p/600TVL), range up to 2-3km with directional antenna. Digital FPV (DJI, Walksnail, HDZero): HD quality (720p-1080p), higher latency (22-40ms), more expensive ($350-600 per system), incompatible between brands, shorter battery life for VTX unit. For racing: analog preferred due to ultra-low latency. For cinematic or freestyle where video quality matters: digital is worth the extra cost and latency.",
+    "keywords": ["analog", "digital", "fpv", "dji", "latency", "hd", "video quality"],
+    "tags": ["beginner", "fpv"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "fpv_systems",
+    "question": "What VTX power output should I use?",
+    "answer": "VTX (Video Transmitter) power output balances range with legal compliance: 25mW: Required by law in many countries for competitions, shortest range (~200m). 100mW: Good for local flying, suitable for most pilots. 200mW: Medium range, good all-around choice. 400-600mW: Long range, check local regulations. 800mW-1W+: Long-range or fixed wing use, often restricted. Most countries limit FPV flying to 25mW (racing) or 200mW (general). Use the lowest power that achieves your desired range — higher power causes more interference for others and drains more battery.",
+    "keywords": ["vtx", "power", "mw", "milliwatt", "range", "legal", "regulations"],
+    "tags": ["beginner", "fpv", "regulations"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "radio_receiver",
+    "question": "How do I bind my receiver to my transmitter?",
+    "answer": "Binding process varies by system: ExpressLRS (ELRS): Enter bind mode on TX (in ExpressLRS module menu or Lua script), power on RX with bind jumper, or use CLI 'bind_rx' in Betaflight. FrSky D16: Hold BIND button on RX while powering on, select D16 bind on TX (Model Setup > External Module > Bind). TBS Crossfire: Go to TX Crossfire menu > Scan and pair. Spektrum: Hold bind button on RX while powering on, hold bind on TX while powering on. Always bind with props OFF. After binding, verify all channels work in Betaflight Receiver tab before first flight.",
+    "keywords": ["bind", "receiver", "transmitter", "frsky", "elrs", "crossfire"],
+    "tags": ["beginner", "radio", "setup"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "radio_receiver",
+    "question": "What is ELRS (ExpressLRS) and why is it popular?",
+    "answer": "ExpressLRS (ELRS) is an open-source, high-performance radio link: Advantages: Very low latency (250Hz+ link rate, ~5ms), excellent range (4-20km depending on hardware), open source and customizable, affordable hardware ($15-40), frequency hopping for reliability. Available on 900MHz (better range, more penetration) and 2.4GHz (lower latency, smaller antennas). Popular because it beats proprietary systems at a fraction of the cost. Works with any OpenTX/EdgeTX transmitter module. Community-supported with frequent firmware updates. If starting fresh, ELRS at 2.4GHz is the recommended radio system for all skill levels.",
+    "keywords": ["elrs", "expresslrs", "radio", "link", "latency", "range", "900mhz", "2.4ghz"],
+    "tags": ["beginner", "radio"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "safety",
+    "question": "What are the basic safety rules for flying FPV drones?",
+    "answer": "Essential FPV drone safety rules: (1) Always fly with a spotter (a second person who maintains visual contact). (2) Never fly over people or crowds. (3) Know your local regulations — in most countries you need to register your drone if it weighs over 250g. (4) Fly at approved locations (check local drone laws). (5) Never fly near airports — maintain >5km distance from airports without ATC clearance. (6) Always have props OFF when connecting battery on the bench. (7) Do a pre-flight check: props tight, battery secured, no loose wires. (8) Never fly over 400ft AGL (120m) without special authorization. (9) Use a failsafe — configure RTH or disarm on signal loss.",
+    "keywords": ["safety", "rules", "regulations", "fpv", "spotter", "legal"],
+    "tags": ["beginner", "safety", "regulations"],
+    "difficulty": "beginner"
+  },
+  {
+    "category": "safety",
+    "question": "How do I configure failsafe on my drone?",
+    "answer": "Failsafe triggers when the drone loses radio signal. Configuration steps: In Betaflight: (1) Go to Failsafe tab. (2) Set Stage 1 Failsafe: Set channels to hold or set throttle to a mid value for 1-2 seconds detection. (3) Set Stage 2 Failsafe: Options are Drop (motors off — safest if flying over none), Land (descend slowly), or GPS Return (if GPS equipped). (4) Test failsafe on bench: bind receiver, arm, slowly remove antenna or turn off transmitter — verify motors stop or behave as configured. On your transmitter: also configure receiver failsafe output channels to neutral sticks, min throttle. Never fly without tested failsafe.",
+    "keywords": ["failsafe", "signal loss", "betaflight", "receiver", "safety", "return to home"],
+    "tags": ["beginner", "safety", "setup"],
+    "difficulty": "beginner"
+  }
+]

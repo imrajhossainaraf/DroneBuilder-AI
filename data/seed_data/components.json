@@ -1,0 +1,74 @@
+[
+  {
+    "component_type": "motor",
+    "name": "EMAX RS2207 2600KV",
+    "brand": "EMAX",
+    "specs": {"kv": 2600, "size": "2207", "weight": "31g", "voltage": "4-6S", "max_current": "40A"},
+    "price_range": "15-20",
+    "compatible_with": {"esc": ["30A", "35A", "40A"], "battery": ["4S", "5S", "6S"], "frame": ["5-inch", "6-inch"]},
+    "use_cases": ["racing", "freestyle"],
+    "pros": ["High quality", "Durable", "Smooth power"],
+    "cons": ["Slightly expensive"],
+    "rating": 4.5
+  },
+  {
+    "component_type": "motor",
+    "name": "iFlight XING 2207 1800KV",
+    "brand": "iFlight",
+    "specs": {"kv": 1800, "size": "2207", "weight": "34g", "voltage": "4-6S", "max_current": "42A"},
+    "price_range": "18-25",
+    "compatible_with": {"esc": ["35A", "40A", "45A"], "battery": ["5S", "6S"], "frame": ["5-inch", "6-inch"]},
+    "use_cases": ["freestyle", "long range"],
+    "pros": ["Smooth on 6S", "Well balanced", "Good customer support"],
+    "cons": ["Heavier than some competitors"],
+    "rating": 4.6
+  },
+  {
+    "component_type": "flight_controller",
+    "name": "SpeedyBee F405 V3",
+    "brand": "SpeedyBee",
+    "specs": {"processor": "STM32F405", "gyro": "MPU6000", "uarts": 6, "blackbox": "8MB Flash", "barometer": true},
+    "price_range": "35-45",
+    "compatible_with": {"stack": ["30x30mm", "20x20mm"]},
+    "use_cases": ["racing", "freestyle", "long range"],
+    "pros": ["Bluetooth config", "Affordable", "Great software support"],
+    "cons": ["F4 chip — not as fast as F7 for complex builds"],
+    "rating": 4.7
+  },
+  {
+    "component_type": "esc",
+    "name": "Holybro Kotleta20",
+    "brand": "Holybro",
+    "specs": {"continuous_current": "20A", "burst_current": "30A", "protocol": "DSHOT300/600", "telemetry": true},
+    "price_range": "18-25",
+    "compatible_with": {"battery": ["3S", "4S"], "motor_size": ["2204", "2205", "2306"]},
+    "use_cases": ["racing", "freestyle"],
+    "pros": ["Telemetry built in", "Reliable", "Bidirectional DSHOT"],
+    "cons": ["Only 20A — not suitable for high-power 6S builds"],
+    "rating": 4.3
+  },
+  {
+    "component_type": "battery",
+    "name": "CNHL 1500mAh 4S 100C",
+    "brand": "CNHL",
+    "specs": {"capacity": "1500mAh", "cells": "4S", "voltage": "14.8V", "c_rating": "100C", "weight": "170g", "connector": "XT60"},
+    "price_range": "20-28",
+    "compatible_with": {"frame": ["4-inch", "5-inch"], "motor_kv": ["2000-2600KV"]},
+    "use_cases": ["racing", "freestyle"],
+    "pros": ["Great price-to-performance", "Consistent quality", "High C rating"],
+    "cons": ["Slight puffing after ~100 cycles"],
+    "rating": 4.4
+  },
+  {
+    "component_type": "frame",
+    "name": "TBS Source One V5 5-inch",
+    "brand": "TBS",
+    "specs": {"size": "5-inch", "arm_thickness": "4mm", "weight": "90g", "material": "Carbon Fiber", "stack": "30x30mm"},
+    "price_range": "35-55",
+    "compatible_with": {"motor": ["2207", "2306"], "stack": ["30x30mm", "20x20mm"]},
+    "use_cases": ["freestyle", "long range"],
+    "pros": ["Open source design", "Replaceable arms", "Wide community support"],
+    "cons": ["Not the most aerodynamic for pure racing"],
+    "rating": 4.6
+  }
+]
